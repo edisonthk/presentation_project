@@ -85,7 +85,6 @@ div#bottomcontent{
 }
 #content2 div{
   display: block;
-  height: 100%;
 }
 .moveL{
   transition: width .3s ease .1s, height .3s ease .1s;;
@@ -419,4 +418,10 @@ img.middlever{ vertical-align: -8px; }
     background-color: #FFF;
     box-shadow: 6px 6px 6px rgba(0,0,0,0.4);  /* CSS3 */
     padding:50px;
+}
+.content2panel{
+  color: white;
+  font-weight:bold;
+  text-shadow:0 -1px 0px #333,0 1px 0px #555;
+  text-decoration:none;
 }

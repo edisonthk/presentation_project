@@ -109,13 +109,75 @@
           <label class="panel" for="panela1">Property</label>
           <input type="checkbox" id="panela1" class="on-off" checked>
           <ul class="content2panel">
-            <aa id="shape."></aa><br>
-            <aa id="xywh."></aa>
+            <aa id="shape">
+              <!-- Side menu = Property -->
+              <!-- triangle -->
+              <div class="sidemenu sidemenu-triangle">
+                <nobr><img src="icon/theme_03.png" width="50px" class="middlever">Triangle</nobr><br>
+              </div>
+              <!-- circle -->
+              <div class="sidemenu sidemenu-circle">
+                <nobr><img src="icon/theme_07.png" width="50px" class="middlever">Circle</nobr><br>
+              </div>
+            </aa><br>
+            <aa id="xywh">
+              <!-- BEGIN: Side menu = Property -->
+              <!-- triangle -->
+              <div class="sidemenu sidemenu-triangle">
+                <nobr>&nbsp;
+                  <label>x:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&amp;</label>
+                  <label>y:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px</label>
+                </nobr>
+                <br /><br />
+                <nobr>&nbsp;
+                  <label>z:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0"></label>
+                </nobr>
+                <br /><br />
+                <nobr>&nbsp;
+                  <label>w:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&amp;</label>
+                  <label>h:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px</label>
+                </nobr>
+                <br />
+              </div>
+              <!-- circle -->
+              <div class="sidemenu sidemenu-circle">
+                <nobr>
+                  <label>x:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&amp;</label>
+                  <label>y:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px</label>
+                </nobr>
+                <br /><br />
+                <nobr>
+                  <label>z:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0"></label>
+                </nobr>
+                <br /><br />
+                <nobr>
+                  <label>radius:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&amp;</label>
+                </nobr>
+              </div>
+              <!-- END: Side menu = Property -->
+            </aa>
           </ul>
           <label class="panel" for="panela2">Style</label>
           <input type="checkbox" id="panela2" class="on-off" checked>
           <ul>
-            <aa id="color."></aa>
+            <aa id="color">
+              <!-- BEGIN: Side menu = Style -->
+              <!-- triangle -->
+              <div class="sidemenu sidemenu-triangle">
+                  <link rel="stylesheet" type="text/css" href="jquery-ui.css">
+                  <link href="evol.colorpicker.css" rel="stylesheet" type="text/css">
+                  <div style="width:128px;">
+                    <input style="width:100px;" id="mycolor" class="colorPicker evo-cp0" />
+                    <span class="evo-colorind" style="background-color:#8db3e2"></span>
+                  </div>
+              </div>
+              <!-- circle -->
+              <div class="sidemenu sidemenu-circle">
+
+              </div>
+              <!-- END: Side menu = Style -->
+
+            </aa>
           </ul>
           <label class="panel" for="panela3">Animation</label>
           <input type="checkbox" id="panela3" class="on-off" checked>

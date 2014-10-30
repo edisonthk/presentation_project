@@ -78,11 +78,6 @@ function appendHTML(iframeid, html){
   // doc.body.appendChild(container);
 
 }
-/*
-function newURL(){
-  document.iFrame.location.href = "#";
-}
-*/
 function showDialog() {
     var html = document.getElementById("container").innerHTML;
 
@@ -112,13 +107,21 @@ function getBrowserHeight() {
 }
 // ダイアログを閉じる
 function closeDialog() {
-    var delNode = document.getElementById("dialog");
-    delNode.parentNode.removeChild(delNode);
+  var delNode = document.getElementById("dialog");
+  delNode.parentNode.removeChild(delNode);
+}
+function dispmenu(shape){
+  $("#shape, #color, #xywh").find(".sidemenu").each(function(index,element){
+    var _e = $(element);
+    _e.hide();
+    if(_e.hasClass("sidemenu-"+shape)){
+      _e.show();
+    }
+  });
 }
 
-// Initialize core
-//var core = new ParsingEngine();
-
-window.onload = function(){
-  
-}
+$(function(){
+  $("#shape, #color, #xywh").find(".sidemenu").each(function(index,element){
+    $(element).hide();
+  });
+})
