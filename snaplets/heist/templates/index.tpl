@@ -16,7 +16,7 @@
             <li><p onClick="change('delete2')">Delete Content2.</p></li>
             <li><p onClick="change('delete')">Delete Bottom Content.</p></li>
             <li><p onClick="change('restore2')">Restore Content2.</p></li>
-            <li><p onClick="change('restore')">Restore Bottom Content.</p></li>
+            <li><p onClick="change('restore')">Restore sBottom Content.</p></li>
           </ul>
       </li>
       <li id="displaymenu"><p>Display</p>
