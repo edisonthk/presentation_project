@@ -47,4 +47,3 @@ Selector.prototype.moveToSelectedElement = function(targetElement, event) {
 
 	// assign selected element
 }
-

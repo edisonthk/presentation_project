@@ -125,7 +125,7 @@
               <!-- triangle -->
               <div class="sidemenu sidemenu-triangle">
                 <nobr>&nbsp;
-                  <label>x:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&amp;</label>
+                  <label>x:&nbsp;<input type="number" id="tri-x" min="0" value="3" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&amp;</label>
                   <label>y:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px</label>
                 </nobr>
                 <br /><br />

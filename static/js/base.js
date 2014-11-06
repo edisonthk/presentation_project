@@ -67,7 +67,7 @@ function appendHTML(iframeid, html){
     }
   };
   _data.push(ani);
-  console.log(_data);
+  //console.log(_data);
 
   // HTMLやCSSなどを更新
   document.getElementById(iframeid).contentWindow.updateElement(_data);
@@ -75,15 +75,11 @@ function appendHTML(iframeid, html){
     // divが選択されたこのイベントが発生する
     // この関数の中にメニューの内容を変更イベントなどを作ってください。
     // １番目のパラメータselectorはSelectorクラスだから
-    console.log(selector.getSelectedElement());
-    dispmenu("triangle");
+    //console.log(selector.getSelectedElement());
+    var eleX = selector.getSelectedElement().style.top; var num = eleX.match(/\d/g).join("");
+    console.log(num);
+    dispmenu("triangle",num);
   }
-
-  // var container = doc.createElement("div");
-  // if(html=="san"){container.setAttribute("class", "sankaku");container.setAttribute("id", "sankaku");}
-  // if(html=="circ"){container.setAttribute("class", "circle");container.setAttribute("id", "circle");}
-  // doc.body.appendChild(container);
-
 }
 function showDialog() {
     var html = document.getElementById("container").innerHTML;
@@ -117,11 +113,12 @@ function closeDialog() {
   var delNode = document.getElementById("dialog");
   delNode.parentNode.removeChild(delNode);
 }
-function dispmenu(shape){
+function dispmenu(shape, eleX){
   $("#shape, #color, #xywh").find(".sidemenu").each(function(index,element){
     var _e = $(element);
     _e.hide();
     if(_e.hasClass("sidemenu-"+shape)){
+      document.getElementById("tri-x").value = eleX;
       _e.show();
     }
   });

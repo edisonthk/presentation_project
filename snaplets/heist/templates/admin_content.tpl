@@ -14,17 +14,12 @@
 		core.updateElement(_data);
 	}
 
-
-
 	$(function(){
-
 		var _s = new Selector("system-selector");
-
 		$(document).click(function(e){
 /*			$("div").each(function(index,element){
 				$(element).removeClass("clicked");
-			});
-*/
+			});*/
 			if($(e.target).is("div")&& !($(e.target).hasClass("selector"))){
 				_s.selectElement(e);
 				if(typeof elementSelectedCallback === "function"){
@@ -36,6 +31,7 @@
 		})
 	})
 	</script>
+
 	<style type="text/css">
 	.selector {
 		position: absolute;
@@ -71,6 +67,7 @@
 	}
 	</style>
 </head>
+
 <body>
 	<div id="system-selector" class="selector">
 		<div class="selector-border selector-top-left"></div>
@@ -80,4 +77,5 @@
 	</div>
 
 </body>
+
 </html>
