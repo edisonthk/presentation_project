@@ -14,6 +14,8 @@
 		core.updateElement(_data);
 	}
 
+
+
 	$(function(){
 
 		var _s = new Selector("system-selector");
@@ -25,6 +27,10 @@
 			if($(e.target).is("div")){
 				_s.selectElement(e);
 				$(e.target).addClass("clickshadow");
+				if(typeof elementSelectedCallback === "function"){
+					elementSelectedCallback(_s);	
+				}
+				
 			}else{
 				_s.hide();
 			}
