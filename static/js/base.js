@@ -37,11 +37,11 @@ function appendHTML(iframeid, html){
     triangle["name"] = "object1";
     triangle["type"] = "object";
     triangle["characteristics"] = {"color":"red","shape":"triangle","x":"150px","y":"150px","height":"150px","width":"200px"};
-    triangle["click"] = [{
-      "object":"object1",
-      "animation": "ani",
-      "animationDuration": "0.8s"
-    }];
+    // triangle["click"] = [{
+    //   "object":"object1",
+    //   "animation": "ani",
+    //   "animationDuration": "0.8s"
+    // }];
     _data.push(triangle);
   }
   if(html=="circ"){
@@ -49,11 +49,11 @@ function appendHTML(iframeid, html){
     circle["name"] = "object2";
     circle["type"] = "object";
     circle["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"50px"};
-    circle["click"] = [{
-      "object":"object2",
-      "animation": "ani",
-      "animationDuration": "1s"
-    }];
+    // circle["click"] = [{
+    //   "object":"object2",
+    //   "animation": "ani",
+    //   "animationDuration": "1s"
+    // }];
     _data.push(circle);
   }
   var ani = {};

@@ -23,7 +23,10 @@
 				$(element).removeClass("clickshadow");
 			});
 			if($(e.target).is("div")){
+				_s.selectElement(e);
 				$(e.target).addClass("clickshadow");
+			}else{
+				_s.hide();
 			}
 		})
 	})
@@ -36,6 +39,7 @@
 		top: 20px;
 		left: 50px;
 		border: 1px solid #CCC;
+		z-index: 999;
 	}
 	.selector-border {
 		position: absolute;
