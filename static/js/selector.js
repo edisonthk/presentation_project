@@ -1,5 +1,5 @@
 var Selector = function(elementID){
-	this.setElements(elementID);
+	this.setElement(elementID);
 };
 
 Selector.prototype.setElement = function(elementID){
@@ -18,13 +18,17 @@ Selector.prototype.hide = function() {
 	this.element.style.display = "none";
 }
 
-Selector.prototype.moveToClickedElement = function (targetElementID) {
+Selector.prototype.moveToClickedElement = function(targetElementID, event) {
 	var clickedElement = document.getElementById(targetElementID);
-	var clickedElementHeight = 
-	var clickedElementWidth = 
+	var clickedElementHeight =  (event.offsetY - event.Y);
+	var clickedElementWidth = (event.offsetX - event.X);
+
+	// change selector size
+	this.element.style.width = event.target.offsetWidth + "px";
+	this.element.style.height = event.target.offsetHeight + "px";
 
 	// move selector
-	this.element.style.top = "px";
-	this.element.style.left = "px";
+	this.element.style.top = clickedElementHeight + "px";
+	this.element.style.left = clickedElementWidth + "px";
 }
 
