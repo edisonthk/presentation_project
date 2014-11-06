@@ -14,6 +14,9 @@
 	}
 
 	$(function(){
+
+		var _s = new Selector("system-selector");
+
 		$(document).click(function(e){
 			$("div").each(function(index,element){
 				$(element).removeClass("clickshadow");
@@ -24,8 +27,47 @@
 		})
 	})
 	</script>
+	<style type="text/css">
+	.selector {
+		position: absolute;
+		width: 60px;
+		height: 60px;
+		top: 20px;
+		left: 50px;
+		border: 1px solid #CCC;
+	}
+	.selector-border {
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		border: 1px solid #CCC;
+		cursor: e-resize;
+	}
+	.selector .selector-border.selector-top-left {
+		top: -5px;
+		left: -5px;
+	}
+	.selector .selector-border.selector-top-right {
+		top: -5px;
+		right: -5px;
+	}
+	.selector .selector-border.selector-bot-left {
+		bottom: -5px;
+		left: -5px;
+	}
+	.selector .selector-border.selector-bot-right {
+		bottom: -5px;
+		right: -5px;
+	}
+	</style>
 </head>
 <body>
+	<div id="system-selector" class="selector">
+		<div class="selector-border selector-top-left"></div>
+		<div class="selector-border selector-top-right"></div>
+		<div class="selector-border selector-bot-left"></div>
+		<div class="selector-border selector-bot-right"></div>
+	</div>
 
 </body>
 </html>
