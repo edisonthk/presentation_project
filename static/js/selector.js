@@ -37,8 +37,6 @@ Selector.prototype.moveToSelectedElement = function(targetElement, event) {
 	var clickedElementTop = targetElement.style.top;
 	var clickedElementLeft = targetElement.style.left;
 
-	
-
 	// change selector size
 	this.element.style.width = clickedElementWidth + "px";
 	this.element.style.height =  clickedElementHeight+ "px";

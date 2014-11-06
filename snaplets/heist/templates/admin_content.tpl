@@ -21,17 +21,16 @@
 		var _s = new Selector("system-selector");
 
 		$(document).click(function(e){
-			$("div").each(function(index,element){
-				$(element).removeClass("clickshadow");
+/*			$("div").each(function(index,element){
+				$(element).removeClass("clicked");
 			});
-			if($(e.target).is("div")){
+*/
+			if($(e.target).is("div")&& !($(e.target).hasClass("selector"))){
 				_s.selectElement(e);
-				$(e.target).addClass("clickshadow");
 				if(typeof elementSelectedCallback === "function"){
 					elementSelectedCallback(_s);	
 				}
-				
-			}else{
+			}else if(!($(e.target).is("div"))){
 				_s.hide();
 			}
 		})
