@@ -47,7 +47,7 @@
             <tr>
               <th onClick="appendHTML('iframe','san')"><span><img src="icon/theme_03.png" width="50px"></span>
                 <li class="arrow_box"><img src="icon/theme_03.png" width="30px" class="middlever">Triangle
-                  <hr width="100%" size="1" color="#fff">You can drow a triangle.</li></th>
+                  <hr width="100%" size="1" color="#fff">You can draw a triangle.</li></th>
               <th onClick="appendHTML('iframe','fuki')"><span><img src="icon/theme_04.png" width="50px"></span>
                <li class="arrow_box"><img src="icon/theme_04.png" width="30px" class="middlever">Fukidashi
                   <hr width="100%" size="1" color="#fff">You can drow a Fukidashi.</li></th>
@@ -186,7 +186,7 @@
         </div>
       </div>
       <div id="topcontent" class="moveL">
-        <iframe id="iframe" name="iFrame" src="/admin_content" width="1500px" height="1000px" frameborder="none" scrolling="no" marginWidth="5" marginHeight="5" allowTransparency="true">
+        <iframe id="iframe" name="iFrame" src="/admin_content" width="100%" height="100%" frameborder="none" scrolling="no" marginWidth="5" marginHeight="5" allowTransparency="true">
           <!--margin: 5px 5px 5px 5px;-->
         </iframe>
       </div>
