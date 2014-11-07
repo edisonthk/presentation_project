@@ -78,12 +78,6 @@ function appendHTML(iframeid, html){
     console.log(selector.getSelectedElement());
     dispmenu("triangle");
   }
-
-  // var container = doc.createElement("div");
-  // if(html=="san"){container.setAttribute("class", "sankaku");container.setAttribute("id", "sankaku");}
-  // if(html=="circ"){container.setAttribute("class", "circle");container.setAttribute("id", "circle");}
-  // doc.body.appendChild(container);
-
 }
 function showDialog() {
     var html = document.getElementById("container").innerHTML;
