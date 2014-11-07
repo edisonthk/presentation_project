@@ -14,29 +14,24 @@
 		core.updateElement(_data);
 	}
 
-
-
 	$(function(){
-
 		var _s = new Selector("system-selector");
-
 		$(document).click(function(e){
-			$("div").each(function(index,element){
-				$(element).removeClass("clickshadow");
-			});
-			if($(e.target).is("div")){
+/*			$("div").each(function(index,element){
+				$(element).removeClass("clicked");
+			});*/
+			if($(e.target).is("div")&& !($(e.target).hasClass("selector"))){
 				_s.selectElement(e);
-				$(e.target).addClass("clickshadow");
 				if(typeof elementSelectedCallback === "function"){
 					elementSelectedCallback(_s);	
 				}
-				
-			}else{
+			}else if(!($(e.target).is("div"))){
 				_s.hide();
 			}
 		})
 	})
 	</script>
+
 	<style type="text/css">
 	.selector {
 		position: absolute;
@@ -72,6 +67,7 @@
 	}
 	</style>
 </head>
+
 <body>
 	<div id="system-selector" class="selector">
 		<div class="selector-border selector-top-left"></div>
@@ -81,4 +77,5 @@
 	</div>
 
 </body>
+
 </html>
