@@ -36,7 +36,7 @@ function appendHTML(iframeid, html){
     var triangle = {};
     triangle["name"] = "object1";
     triangle["type"] = "object";
-    triangle["characteristics"] = {"color":"red","shape":"triangle","x":"150px","y":"120px","height":"150px","width":"200px"};
+    triangle["characteristics"] = {"color":"green","shape":"triangle","x":"150px","y":"120px","height":"150px","width":"200px"};
     // triangle["click"] = [{
     //   "object":"object1",
     //   "animation": "ani",

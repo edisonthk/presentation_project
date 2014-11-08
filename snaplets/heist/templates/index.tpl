@@ -125,7 +125,7 @@
               <!-- triangle -->
               <div class="sidemenu sidemenu-triangle">
                 <nobr>&nbsp;
-                  <label>x:&nbsp;<input type="number" id="tri-x" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&amp;</label>
+                  <label>y:&nbsp;<input type="number" id="tri-x" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&amp;</label>
                   <label>y:&nbsp;<input type="number" id="tri-y" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px</label>
                 </nobr>
                 <br /><br />
@@ -164,12 +164,12 @@
               <!-- BEGIN: Side menu = Style -->
               <!-- triangle -->
               <div class="sidemenu sidemenu-triangle">
-                  <link rel="stylesheet" type="text/css" href="jquery-ui.css">
+                  <!--<link rel="stylesheet" type="text/css" href="jquery-ui.css">
                   <link href="evol.colorpicker.css" rel="stylesheet" type="text/css">
                   <div style="width:128px;">
                     <input style="width:100px;" id="mycolor" class="colorPicker evo-cp0" />
                     <span class="evo-colorind" style="background-color:#8db3e2"></span>
-                  </div>
+                  </div>-->
               </div>
               <!-- circle -->
               <div class="sidemenu sidemenu-circle">
