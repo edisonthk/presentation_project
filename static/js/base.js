@@ -36,7 +36,7 @@ function appendHTML(iframeid, html){
     var triangle = {};
     triangle["name"] = "object1";
     triangle["type"] = "object";
-    triangle["characteristics"] = {"color":"red","shape":"triangle","x":"150px","y":"150px","height":"150px","width":"200px"};
+    triangle["characteristics"] = {"color":"green","shape":"triangle","x":"150px","y":"120px","height":"150px","width":"200px"};
     // triangle["click"] = [{
     //   "object":"object1",
     //   "animation": "ani",
@@ -48,7 +48,7 @@ function appendHTML(iframeid, html){
     var circle = {};
     circle["name"] = "object2";
     circle["type"] = "object";
-    circle["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"50px"};
+    circle["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"40px"};
     // circle["click"] = [{
     //   "object":"object2",
     //   "animation": "ani",
@@ -76,9 +76,12 @@ function appendHTML(iframeid, html){
     // この関数の中にメニューの内容を変更イベントなどを作ってください。
     // １番目のパラメータselectorはSelectorクラスだから
     //console.log(selector.getSelectedElement());
-    var eleX = selector.getSelectedElement().style.top; var num = eleX.match(/\d/g).join("");
-    console.log(num);
-    dispmenu("triangle",num);
+    var eleX = selector.getSelectedElement().style.top; var numX = eleX.match(/\d/g).join("");
+    var eleY = selector.getSelectedElement().style.left; var numY = eleY.match(/\d/g).join("");
+    var eleW = selector.getSelectedElement().style.borderRightWidth; var numW = eleW.match(/\d/g).join("");
+    var eleH = selector.getSelectedElement().style.borderBottomWidth; var numH = eleH.match(/\d/g).join("");
+//  console.log(numW);
+    dispmenu("triangle", numX, numY, numW*2, numH);
   }
 }
 function showDialog() {
@@ -113,12 +116,15 @@ function closeDialog() {
   var delNode = document.getElementById("dialog");
   delNode.parentNode.removeChild(delNode);
 }
-function dispmenu(shape, eleX){
+function dispmenu(shape, eleX, eleY, eleW, eleH){
   $("#shape, #color, #xywh").find(".sidemenu").each(function(index,element){
     var _e = $(element);
     _e.hide();
     if(_e.hasClass("sidemenu-"+shape)){
       document.getElementById("tri-x").value = eleX;
+      document.getElementById("tri-y").value = eleY;
+      document.getElementById("tri-w").value = eleW;
+      document.getElementById("tri-h").value = eleH;
       _e.show();
     }
   });
