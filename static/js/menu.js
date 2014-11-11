@@ -88,10 +88,10 @@ Menu.prototype.buildHtml = function() {
 
 	    	if(t.shape === "triangle") {
 	    		console.log(t.propertyMenu);
-		      document.getElementById("tri-x").value = t.propertyMenu.x;
-		      document.getElementById("tri-y").value = t.propertyMenu.y;
-		      document.getElementById("tri-w").value = t.propertyMenu.width;
-		      document.getElementById("tri-h").value = t.propertyMenu.height;
+		      document.getElementById("tri-x").value = t.propertyMenu.x.match(/\d/g).join("");
+		      document.getElementById("tri-y").value = t.propertyMenu.y.match(/\d/g).join("");
+		      document.getElementById("tri-w").value = t.propertyMenu.width.match(/\d/g).join("");
+		      document.getElementById("tri-h").value = t.propertyMenu.height.match(/\d/g).join("");
 		      
 		    }else if(t.shape === "circle") {
 
