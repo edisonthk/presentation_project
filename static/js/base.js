@@ -45,16 +45,16 @@ function appendHTML(iframeid, html){
     _data.push(triangle);
   }
   if(html=="circ"){
-    var circle = {};
-    circle["name"] = "object2";
-    circle["type"] = "object";
-    circle["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"40px"};
-    // circle["click"] = [{
-    //   "object":"object2",
-    //   "animation": "ani",
-    //   "animationDuration": "1s"
-    // }];
-    _data.push(circle);
+    var triangle = {};
+    triangle["name"] = "object1";
+    triangle["type"] = "object";
+    triangle["characteristics"] = {"color":"red","shape":"triangle","x":"250px","y":"200px","height":"100px","width":"150px"};
+    _data.push(triangle);
+    //var circle = {};
+    //circle["name"] = "object2";
+    //circle["type"] = "object";
+    //circle["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"40px"};
+    //_data.push(circle);
   }
   var ani = {};
   ani["name"] = "ani";
@@ -76,11 +76,17 @@ function appendHTML(iframeid, html){
     // この関数の中にメニューの内容を変更イベントなどを作ってください。
     // １番目のパラメータselectorはSelectorクラスだから
     //console.log(selector.getSelectedElement());
+    for(var i =0;i < _data.length; i++){
+      if(_data[i].name === selector.getSelectedElementId()){
+        var _selected_object = _data[i];
+        console.log(_selected_object);
+        break;
+      }
+    }
     var eleX = selector.getSelectedElement().style.top; var numX = eleX.match(/\d/g).join("");
     var eleY = selector.getSelectedElement().style.left; var numY = eleY.match(/\d/g).join("");
     var eleW = selector.getSelectedElement().style.borderRightWidth; var numW = eleW.match(/\d/g).join("");
     var eleH = selector.getSelectedElement().style.borderBottomWidth; var numH = eleH.match(/\d/g).join("");
-//  console.log(numW);
     dispmenu("triangle", numX, numY, numW*2, numH);
   }
 }
@@ -111,7 +117,7 @@ function getBrowserHeight() {
     }
     return 0;
 }
-// ダイアログを閉じる
+// ダイアログを閉じる。
 function closeDialog() {
   var delNode = document.getElementById("dialog");
   delNode.parentNode.removeChild(delNode);
