@@ -81,7 +81,7 @@ function appendHTML(iframeid, html){
     var eleW = selector.getSelectedElement().style.borderRightWidth; var numW = eleW.match(/\d/g).join("");
     var eleH = selector.getSelectedElement().style.borderBottomWidth; var numH = eleH.match(/\d/g).join("");
 //  console.log(numW);
-    dispmenu("triangle", numX, numY, numW*2, numH);
+    
   }
 }
 function showDialog() {
@@ -116,22 +116,18 @@ function closeDialog() {
   var delNode = document.getElementById("dialog");
   delNode.parentNode.removeChild(delNode);
 }
-function dispmenu(shape, eleX, eleY, eleW, eleH){
-  $("#shape, #color, #xywh").find(".sidemenu").each(function(index,element){
-    var _e = $(element);
-    _e.hide();
-    if(_e.hasClass("sidemenu-"+shape)){
-      document.getElementById("tri-x").value = eleX;
-      document.getElementById("tri-y").value = eleY;
-      document.getElementById("tri-w").value = eleW;
-      document.getElementById("tri-h").value = eleH;
-      _e.show();
-    }
-  });
-}
+// function dispmenu(shape, eleX, eleY, eleW, eleH){
+//   $("#style, #color, #xywh").find(".sidemenu").each(function(index,element){
+//     var _e = $(element);
+//     _e.hide();
+//     if(_e.hasClass("sidemenu-"+shape)){
+//       document.getElementById("tri-x").value = eleX;
+//       document.getElementById("tri-y").value = eleY;
+//       document.getElementById("tri-w").value = eleW;
+//       document.getElementById("tri-h").value = eleH;
+//       _e.show();
+//     }
+//   });
+// }
 
-$(function(){
-  $("#shape, #color, #xywh").find(".sidemenu").each(function(index,element){
-    $(element).hide();
-  });
-})
+menu = new Menu();

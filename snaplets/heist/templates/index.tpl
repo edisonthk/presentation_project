@@ -109,7 +109,7 @@
           <label class="panel" for="panela1">Property</label>
           <input type="checkbox" id="panela1" class="on-off" checked>
           <ul class="content2panel">
-            <aa id="shape">
+            <aa id="propertyMenu">
               <!-- Side menu = Property -->
               <!-- triangle -->
               <div class="sidemenu sidemenu-triangle">
