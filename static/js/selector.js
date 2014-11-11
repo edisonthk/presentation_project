@@ -47,3 +47,6 @@ Selector.prototype.moveToSelectedElement = function(targetElement, event) {
 
 	// assign selected element
 }
+Selector.prototype.getSelectedElementId = function(){
+	return this.selected_element.id;
+}

@@ -12,7 +12,7 @@ var Menu = function(){
 
 // CONSTANT変数
 Menu.prototype.KEY = {
-	CHARACTERISTICS: "charateristic",
+	CHARACTERISTICS: "characteristics",
 	TYPE: "type",
 	NAME: "name",
 }
@@ -21,6 +21,7 @@ Menu.prototype.setObject = function(object){
 	var  t = this;
 
 	t.shape = object[t.KEY.CHARACTERISTICS]["shape"];
+	console.log(object);
 	t.name = object[t.KEY.NAME];
 	t.charateristic = object[t.KEY.CHARACTERISTICS];
 
@@ -67,7 +68,7 @@ Menu.prototype.setStyleMenu = function() {
 	}
 }
 
-Menu.prototype.setAnimation = function() {
+Menu.prototype.setAnimationMenu = function() {
 	this.animationMenu = {
 		list: []
 	}
@@ -79,13 +80,14 @@ Menu.prototype.buildHtml = function() {
 	  });
 
 	var t = this;
-	$("#propertyMenu").find(".sidemenu").each(function(index,element){
+	$("#propertyMenu, #xywh").find(".sidemenu").each(function(index,element){
 	    var _e = $(element);
 	    _e.hide();
 
 	    if(_e.hasClass("sidemenu-"+t.shape)){
 
 	    	if(t.shape === "triangle") {
+	    		console.log(t.propertyMenu);
 		      document.getElementById("tri-x").value = t.propertyMenu.x;
 		      document.getElementById("tri-y").value = t.propertyMenu.y;
 		      document.getElementById("tri-w").value = t.propertyMenu.width;

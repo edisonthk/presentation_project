@@ -7,10 +7,9 @@
 	<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="/js/selector.js"></script>
 	<script>
-
 	// コアスクリプト
 	function updateElement(_data){
-		core=new ParsingEngine();
+		core = new ParsingEngine();
 		core.updateElement(_data);
 	}
 
@@ -23,7 +22,7 @@
 			if($(e.target).is("div")&& !($(e.target).hasClass("selector"))){
 				_s.selectElement(e);
 				if(typeof elementSelectedCallback === "function"){
-					elementSelectedCallback(_s);	
+					elementSelectedCallback(_s);
 				}
 			}else if(!($(e.target).is("div"))){
 				_s.hide();
@@ -69,13 +68,13 @@
 </head>
 
 <body>
+
 	<div id="system-selector" class="selector">
 		<div class="selector-border selector-top-left"></div>
 		<div class="selector-border selector-top-right"></div>
 		<div class="selector-border selector-bot-left"></div>
 		<div class="selector-border selector-bot-right"></div>
 	</div>
-
 </body>
 
 </html>
