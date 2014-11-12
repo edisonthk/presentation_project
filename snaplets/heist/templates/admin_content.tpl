@@ -25,7 +25,11 @@
 				if(typeof elementSelectedCallback === "function"){
 					elementSelectedCallback(_s);
 				}
-				$(e.target).draggable();
+				$(e.target).draggable({
+					drag: function(e, ui) {
+         	   			console.log(' top: ' + ui.position.top + ' left: ' + ui.position.left);
+        			}
+				});
 			}else if(!($(e.target).is("div"))){
 				_s.hide();
 			}

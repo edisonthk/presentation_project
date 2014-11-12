@@ -1,5 +1,3 @@
-
-
 var Menu = function(){
 	window.onload = function() {
 		$("#propertyMenu, #color, #xywh").find(".sidemenu").each(function(index,element){
