@@ -16,7 +16,7 @@
             <li><p onClick="change('delete2')">Delete Content2.</p></li>
             <li><p onClick="change('delete')">Delete Bottom Content.</p></li>
             <li><p onClick="change('restore2')">Restore Content2.</p></li>
-            <li><p onClick="change('restore')">Restore Bottom Content.</p></li>
+            <li><p onClick="change('restore')">Restore sBottom Content.</p></li>
           </ul>
       </li>
       <li id="displaymenu"><p>Display</p>
@@ -47,7 +47,7 @@
             <tr>
               <th onClick="appendHTML('iframe','san')"><span><img src="icon/theme_03.png" width="50px"></span>
                 <li class="arrow_box"><img src="icon/theme_03.png" width="30px" class="middlever">Triangle
-                  <hr width="100%" size="1" color="#fff">You can drow a triangle.</li></th>
+                  <hr width="100%" size="1" color="#fff">You can draw a triangle.</li></th>
               <th onClick="appendHTML('iframe','fuki')"><span><img src="icon/theme_04.png" width="50px"></span>
                <li class="arrow_box"><img src="icon/theme_04.png" width="30px" class="middlever">Fukidashi
                   <hr width="100%" size="1" color="#fff">You can drow a Fukidashi.</li></th>
@@ -109,7 +109,7 @@
           <label class="panel" for="panela1">Property</label>
           <input type="checkbox" id="panela1" class="on-off" checked>
           <ul class="content2panel">
-            <aa id="shape">
+            <aa id="propertyMenu">
               <!-- Side menu = Property -->
               <!-- triangle -->
               <div class="sidemenu sidemenu-triangle">
@@ -125,8 +125,8 @@
               <!-- triangle -->
               <div class="sidemenu sidemenu-triangle">
                 <nobr>&nbsp;
-                  <label>x:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&amp;</label>
-                  <label>y:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px</label>
+                  <label>y:&nbsp;<input type="number" id="tri-x" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&amp;</label>
+                  <label>y:&nbsp;<input type="number" id="tri-y" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px</label>
                 </nobr>
                 <br /><br />
                 <nobr>&nbsp;
@@ -134,8 +134,8 @@
                 </nobr>
                 <br /><br />
                 <nobr>&nbsp;
-                  <label>w:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&amp;</label>
-                  <label>h:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px</label>
+                  <label>w:&nbsp;<input type="number" id="tri-w" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&amp;</label>
+                  <label>h:&nbsp;<input type="number" id="tri-h" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px</label>
                 </nobr>
                 <br />
               </div>
@@ -164,12 +164,12 @@
               <!-- BEGIN: Side menu = Style -->
               <!-- triangle -->
               <div class="sidemenu sidemenu-triangle">
-                  <link rel="stylesheet" type="text/css" href="jquery-ui.css">
+                  <!--<link rel="stylesheet" type="text/css" href="jquery-ui.css">
                   <link href="evol.colorpicker.css" rel="stylesheet" type="text/css">
                   <div style="width:128px;">
                     <input style="width:100px;" id="mycolor" class="colorPicker evo-cp0" />
                     <span class="evo-colorind" style="background-color:#8db3e2"></span>
-                  </div>
+                  </div>-->
               </div>
               <!-- circle -->
               <div class="sidemenu sidemenu-circle">
@@ -186,7 +186,7 @@
         </div>
       </div>
       <div id="topcontent" class="moveL">
-        <iframe id="iframe" name="iFrame" src="/admin_content" width="1500px" height="1000px" frameborder="none" scrolling="no" marginWidth="5" marginHeight="5" allowTransparency="true">
+        <iframe id="iframe" name="iFrame" src="/admin_content" width="100%" height="100%" frameborder="none" scrolling="no" marginWidth="5" marginHeight="5" allowTransparency="true">
           <!--margin: 5px 5px 5px 5px;-->
         </iframe>
       </div>

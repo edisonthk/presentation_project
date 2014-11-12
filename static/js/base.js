@@ -36,25 +36,25 @@ function appendHTML(iframeid, html){
     var triangle = {};
     triangle["name"] = "object1";
     triangle["type"] = "object";
-    triangle["characteristics"] = {"color":"red","shape":"triangle","x":"150px","y":"150px","height":"150px","width":"200px"};
-    triangle["click"] = [{
-      "object":"object1",
-      "animation": "ani",
-      "animationDuration": "0.8s"
-    }];
+    triangle["characteristics"] = {"color":"green","shape":"triangle","x":"150px","y":"120px","height":"150px","width":"200px"};
+    // triangle["click"] = [{
+    //   "object":"object1",
+    //   "animation": "ani",
+    //   "animationDuration": "0.8s"
+    // }];
     _data.push(triangle);
   }
   if(html=="circ"){
-    var circle = {};
-    circle["name"] = "object2";
-    circle["type"] = "object";
-    circle["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"50px"};
-    circle["click"] = [{
-      "object":"object2",
-      "animation": "ani",
-      "animationDuration": "1s"
-    }];
-    _data.push(circle);
+    var triangle = {};
+    triangle["name"] = "object1";
+    triangle["type"] = "object";
+    triangle["characteristics"] = {"color":"red","shape":"triangle","x":"250px","y":"200px","height":"100px","width":"150px"};
+    _data.push(triangle);
+    //var circle = {};
+    //circle["name"] = "object2";
+    //circle["type"] = "object";
+    //circle["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"40px"};
+    //_data.push(circle);
   }
   var ani = {};
   ani["name"] = "ani";
@@ -67,16 +67,31 @@ function appendHTML(iframeid, html){
     }
   };
   _data.push(ani);
-  console.log(_data);
+  //console.log(_data);
 
   // HTMLやCSSなどを更新
   document.getElementById(iframeid).contentWindow.updateElement(_data);
-
-  // var container = doc.createElement("div");
-  // if(html=="san"){container.setAttribute("class", "sankaku");container.setAttribute("id", "sankaku");}
-  // if(html=="circ"){container.setAttribute("class", "circle");container.setAttribute("id", "circle");}
-  // doc.body.appendChild(container);
-
+  document.getElementById(iframeid).contentWindow.elementSelectedCallback = function(selector) {
+    // divが選択されたこのイベントが発生する
+    // この関数の中にメニューの内容を変更イベントなどを作ってください。
+    // １番目のパラメータselectorはSelectorクラスだから
+    //console.log(selector.getSelectedElement());
+    
+    for(var i =0;i < _data.length; i++){
+      if(_data[i].name === selector.getSelectedElementId()){
+        var _selected_object = _data[i];
+        console.log(_selected_object);
+        menu.setObject(_selected_object);
+        break;
+      }
+    }
+    /*
+    var eleX = selector.getSelectedElement().style.top; var numX = eleX.match(/\d/g).join("");
+    var eleY = selector.getSelectedElement().style.left; var numY = eleY.match(/\d/g).join("");
+    var eleW = selector.getSelectedElement().style.borderRightWidth; var numW = eleW.match(/\d/g).join("");
+    var eleH = selector.getSelectedElement().style.borderBottomWidth; var numH = eleH.match(/\d/g).join("");
+    */
+  }
 }
 function showDialog() {
     var html = document.getElementById("container").innerHTML;
@@ -105,23 +120,25 @@ function getBrowserHeight() {
     }
     return 0;
 }
-// ダイアログを閉じる
+// ダイアログを閉じる。
 function closeDialog() {
   var delNode = document.getElementById("dialog");
   delNode.parentNode.removeChild(delNode);
 }
-function dispmenu(shape){
-  $("#shape, #color, #xywh").find(".sidemenu").each(function(index,element){
+/*
+function dispmenu(shape, eleX, eleY, eleW, eleH){
+  $("#style, #color, #xywh").find(".sidemenu").each(function(index,element){
     var _e = $(element);
     _e.hide();
     if(_e.hasClass("sidemenu-"+shape)){
-      _e.show();
-    }
-  });
+       document.getElementById("tri-x").value = eleX;
+       document.getElementById("tri-y").value = eleY;
+       document.getElementById("tri-w").value = eleW;
+       document.getElementById("tri-h").value = eleH;
+       _e.show();
+     }
+   });
 }
+*/
 
-$(function(){
-  $("#shape, #color, #xywh").find(".sidemenu").each(function(index,element){
-    $(element).hide();
-  });
-})
+menu = new Menu();
