@@ -30,6 +30,12 @@
          	   			console.log(' top: ' + ui.position.top + ' left: ' + ui.position.left);
         			}
 				});
+				$(e.target).resizable({
+					handles: "all",
+/*					drag: function(e, ui) {
+         	   			console.log(' top: ' + ui.position.top + ' left: ' + ui.position.left);
+        			}*/
+				});
 			}else if(!($(e.target).is("div"))){
 				_s.hide();
 			}

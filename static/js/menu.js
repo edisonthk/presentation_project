@@ -40,7 +40,7 @@ Menu.prototype.setPropertyMenu = function() {
 			backgroundColor: "",
 			opacity: "",
 			rotate: "",
-		}
+	}
 
 	if(t.shape === "circle") {
 		t.propertyMenu["radius"] = "";
@@ -83,14 +83,12 @@ Menu.prototype.buildHtml = function() {
 	    _e.hide();
 
 	    if(_e.hasClass("sidemenu-"+t.shape)){
-
 	    	if(t.shape === "triangle") {
 	    		console.log(t.propertyMenu);
-		      document.getElementById("tri-x").value = t.propertyMenu.x.match(/\d/g).join("");
-		      document.getElementById("tri-y").value = t.propertyMenu.y.match(/\d/g).join("");
-		      document.getElementById("tri-w").value = t.propertyMenu.width.match(/\d/g).join("");
-		      document.getElementById("tri-h").value = t.propertyMenu.height.match(/\d/g).join("");
-		      
+		      	document.getElementById("tri-x").value = t.propertyMenu.x.match(/\d/g).join("");
+		      	document.getElementById("tri-y").value = t.propertyMenu.y.match(/\d/g).join("");
+		      	document.getElementById("tri-w").value = t.propertyMenu.width.match(/\d/g).join("");
+		      	document.getElementById("tri-h").value = t.propertyMenu.height.match(/\d/g).join("");
 		    }else if(t.shape === "circle") {
 
 		    }

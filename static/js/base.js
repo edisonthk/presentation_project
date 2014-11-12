@@ -76,6 +76,7 @@ function appendHTML(iframeid, html){
     // この関数の中にメニューの内容を変更イベントなどを作ってください。
     // １番目のパラメータselectorはSelectorクラスだから
     //console.log(selector.getSelectedElement());
+    
     for(var i =0;i < _data.length; i++){
       if(_data[i].name === selector.getSelectedElementId()){
         var _selected_object = _data[i];
@@ -84,10 +85,12 @@ function appendHTML(iframeid, html){
         break;
       }
     }
-    // var eleX = selector.getSelectedElement().style.top; var numX = eleX.match(/\d/g).join("");
-    // var eleY = selector.getSelectedElement().style.left; var numY = eleY.match(/\d/g).join("");
-    // var eleW = selector.getSelectedElement().style.borderRightWidth; var numW = eleW.match(/\d/g).join("");
-    // var eleH = selector.getSelectedElement().style.borderBottomWidth; var numH = eleH.match(/\d/g).join("");
+    /*
+    var eleX = selector.getSelectedElement().style.top; var numX = eleX.match(/\d/g).join("");
+    var eleY = selector.getSelectedElement().style.left; var numY = eleY.match(/\d/g).join("");
+    var eleW = selector.getSelectedElement().style.borderRightWidth; var numW = eleW.match(/\d/g).join("");
+    var eleH = selector.getSelectedElement().style.borderBottomWidth; var numH = eleH.match(/\d/g).join("");
+    */
   }
 }
 function showDialog() {
@@ -122,18 +125,20 @@ function closeDialog() {
   var delNode = document.getElementById("dialog");
   delNode.parentNode.removeChild(delNode);
 }
-// function dispmenu(shape, eleX, eleY, eleW, eleH){
-//   $("#style, #color, #xywh").find(".sidemenu").each(function(index,element){
-//     var _e = $(element);
-//     _e.hide();
-//     if(_e.hasClass("sidemenu-"+shape)){
-//       document.getElementById("tri-x").value = eleX;
-//       document.getElementById("tri-y").value = eleY;
-//       document.getElementById("tri-w").value = eleW;
-//       document.getElementById("tri-h").value = eleH;
-//       _e.show();
-//     }
-//   });
-// }
+/*
+function dispmenu(shape, eleX, eleY, eleW, eleH){
+  $("#style, #color, #xywh").find(".sidemenu").each(function(index,element){
+    var _e = $(element);
+    _e.hide();
+    if(_e.hasClass("sidemenu-"+shape)){
+       document.getElementById("tri-x").value = eleX;
+       document.getElementById("tri-y").value = eleY;
+       document.getElementById("tri-w").value = eleW;
+       document.getElementById("tri-h").value = eleH;
+       _e.show();
+     }
+   });
+}
+*/
 
 menu = new Menu();
