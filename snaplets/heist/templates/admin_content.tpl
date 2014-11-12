@@ -5,6 +5,7 @@
 	<title>iFrame</title>
 	<script type="text/javascript" src="/js/core.js"></script>
 	<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/js/selector.js"></script>
 	<script>
 	// コアスクリプト
@@ -24,6 +25,7 @@
 				if(typeof elementSelectedCallback === "function"){
 					elementSelectedCallback(_s);
 				}
+				$(e.target).draggable();
 			}else if(!($(e.target).is("div"))){
 				_s.hide();
 			}
