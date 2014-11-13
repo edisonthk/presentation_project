@@ -541,7 +541,13 @@ ParsingEngine.prototype.writeDocuments = function() {
   // write compiled_keyframes to style tag
   var keyframe_prefix = ["@-webkit-keyframes","@keyframes"];
   
-  var eleStyle = document.createElement("style");
+  var system_style_id = "system_style_id";
+  var eleStyle = document.getElementById(system_style_id);
+  if(!eleStyle){
+    eleStyle = document.createElement("style");
+    eleStyle.id=system_style_id;
+    document.body.appendChild(eleStyle);
+  }
   eleStyle.innerHTML = "";
   for(var i = 0;i < this.compiled_keyframes.length; i++){
     var temp_rule = "";
@@ -558,16 +564,19 @@ ParsingEngine.prototype.writeDocuments = function() {
     }
     eleStyle.innerHTML += temp_rule;
   }
-  document.body.appendChild(eleStyle);
-
+  
 
   // Write compiler object to html element
   for(var i = 0; i < this.compiled_objects.length;i++){
     // create element
-    var ele = document.createElement('div');
+    this.compiled_objects[i]["element"] = document.getElementById(this.compiled_objects[i]["name"]);
+    var ele = this.compiled_objects[i]["element"];
+    
+    if(this.compiled_objects[i]["element"] == null){
+      ele = document.createElement('div');
+      document.body.appendChild(ele);
+    }
     this.compileElement(this.compiled_objects[i],ele);
-    this.compiled_objects[i]["element"] = ele;
-    document.body.appendChild(ele);
   }
 }
 

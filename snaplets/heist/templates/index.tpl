@@ -45,16 +45,16 @@
           <ul>
           <table class="tablec" frameborder="none">
             <tr>
-              <th onClick="appendHTML('iframe','san')"><span><img src="icon/theme_03.png" width="50px"></span>
+              <th onClick="appendHTML('san')"><span><img src="icon/theme_03.png" width="50px"></span>
                 <li class="arrow_box"><img src="icon/theme_03.png" width="30px" class="middlever">Triangle
                   <hr width="100%" size="1" color="#fff">You can draw a triangle.</li></th>
-              <th onClick="appendHTML('iframe','fuki')"><span><img src="icon/theme_04.png" width="50px"></span>
+              <th onClick="appendHTML('fuki')"><span><img src="icon/theme_04.png" width="50px"></span>
                <li class="arrow_box"><img src="icon/theme_04.png" width="30px" class="middlever">Fukidashi
                   <hr width="100%" size="1" color="#fff">You can drow a Fukidashi.</li></th>
               <th onClick="newURL()"><span><img src="icon/theme_06.png" width="50px"></span>
                 <li class="arrow_box"><img src="icon/theme_06.png" width="30px" class="middlever">Youtube
                   <hr width="100%" size="1" color="#fff">You can embed youtube.</li></th>
-              <th onClick="appendHTML('iframe','circ')"><span><img src="icon/theme_07.png" width="50px"></span>
+              <th onClick="appendHTML('circ')"><span><img src="icon/theme_07.png" width="50px"></span>
                 <li class="arrow_box"><img src="icon/theme_07.png" width="30px" class="middlever">Circle
                   <hr width="100%" size="1" color="#fff">You can drow a circle.</li></th>
             </tr>

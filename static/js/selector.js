@@ -27,13 +27,18 @@ Selector.prototype.getSelectedElement = function() {
 Selector.prototype.selectElement = function(event) {
 	this.show();
 	this.selected_element = event.target;
-	this.moveToSelectedElement(event.target, event);
+	this.moveToSelectedElement(event.target);
 }
+Selector.prototype.moveToSelectedElement = function(targetElement) {
+	console.log(targetElement);
+	if(typeof targetElement === "string"){
+		targetElement = document.getElementById(targetElement);
 
-Selector.prototype.moveToSelectedElement = function(targetElement, event) {
+	}
+
 	var clickedElement = targetElement;
-	var clickedElementHeight =  event.target.offsetHeight;
-	var clickedElementWidth = event.target.offsetWidth;
+	var clickedElementHeight =  targetElement.offsetHeight;
+	var clickedElementWidth = targetElement.offsetWidth;
 	var clickedElementTop = targetElement.style.top;
 	var clickedElementLeft = targetElement.style.left;
 
@@ -46,6 +51,8 @@ Selector.prototype.moveToSelectedElement = function(targetElement, event) {
 	this.element.style.left = clickedElementLeft;
 
 	// assign selected element
+
+	targetElement.addEventListener("")
 }
 Selector.prototype.getSelectedElementId = function(){
 	return this.selected_element.id;

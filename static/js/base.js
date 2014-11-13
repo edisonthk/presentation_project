@@ -28,9 +28,8 @@ function iframeDoc(id){
   }
 }
 
-function appendHTML(iframeid, html){
+function appendHTML(html){
   
-  var _data = [];
 
   if(html=="san"){
     var triangle = {};
@@ -71,20 +70,18 @@ function appendHTML(iframeid, html){
 
   // HTMLやCSSなどを更新
   document.getElementById(iframeid).contentWindow.updateElement(_data);
+
+  // divが選択された祭にこのコールバックイベントが発生する
+  // この関数の中にメニューの内容を変更イベントなどを作ってください。
+  // １番目のパラメータselectorはSelectorクラスだから
   document.getElementById(iframeid).contentWindow.elementSelectedCallback = function(selector) {
-    // divが選択されたこのイベントが発生する
-    // この関数の中にメニューの内容を変更イベントなどを作ってください。
-    // １番目のパラメータselectorはSelectorクラスだから
-    //console.log(selector.getSelectedElement());
     
-    for(var i =0;i < _data.length; i++){
-      if(_data[i].name === selector.getSelectedElementId()){
-        var _selected_object = _data[i];
-        console.log(_selected_object);
-        menu.setObject(_selected_object);
-        break;
-      }
-    }
+
+    // メニューのHTMLを変更
+    // そして、メニューの中身を変更
+    menu.udpateDataAndSetSelector(_data,selector);
+    
+    
     /*
     var eleX = selector.getSelectedElement().style.top; var numX = eleX.match(/\d/g).join("");
     var eleY = selector.getSelectedElement().style.left; var numY = eleY.match(/\d/g).join("");
@@ -141,4 +138,6 @@ function dispmenu(shape, eleX, eleY, eleW, eleH){
 }
 */
 
-menu = new Menu();
+_data = [];
+iframeid = "iframe";
+menu = new Menu(_data, iframeid);
