@@ -90,6 +90,12 @@ function appendHTML(html){
     document.getElementById(iframeid).contentWindow.updateElement(_data);
   }
 
+  // selectorが外されたときにselectorDeselectedCallbackが発生する
+  document.getElementById(iframeid).contentWindow.selectorDeselectedCallback = function(selector) {
+    // selectorが外された場合、メニューも非表示にする
+    menu.hide();
+  }
+
 
   // divが選択された祭にこのコールバックイベントが発生する
   // この関数の中にメニューの内容を変更イベントなどを作ってください。

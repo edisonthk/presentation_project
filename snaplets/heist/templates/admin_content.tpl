@@ -40,6 +40,9 @@
         			}*/
 				});
 			}else if(!($(e.target).is("div"))){
+				if(typeof selectorDeselectedCallback === "function"){
+					selectorDeselectedCallback(_s);
+				}
 				_s.hide();
 			}
 		})

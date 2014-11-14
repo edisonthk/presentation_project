@@ -176,11 +176,6 @@ MenuEvent.prototype.baseChangeEvent = function(event, real_event_callback){
 // (3) 削除したら、最新のchangeEventを加え
 Menu.prototype.buildHtml = function() {
 
-
-	$("#propertyMenu, #color, #xywh").find(".sidemenu").each(function(index,element){
-	    $(element).hide();
-	  });
-
 	var t = this;
 	var MenuEvent = t._menuEvent_;
 
@@ -224,3 +219,11 @@ Menu.prototype.buildHtml = function() {
   });
 
 };
+
+Menu.prototype.hide = function() {
+
+	$("#propertyMenu, #color, #xywh").find(".sidemenu").each(function(index,element){
+	    $(element).hide();
+	});
+
+}
