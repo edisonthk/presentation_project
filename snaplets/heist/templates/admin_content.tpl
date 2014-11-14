@@ -25,12 +25,15 @@
 				if(typeof elementSelectedCallback === "function"){
 					elementSelectedCallback(_s);
 				}
-				$(e.target).draggable({
+				$("#system-selector").draggable({
 					drag: function(e, ui) {
-         	   			console.log(' top: ' + ui.position.top + ' left: ' + ui.position.left);
+						if(typeof selectorDragCallback === "function"){
+							selectorDragCallback(_s,ui.position.top, ui.position.left);
+						}
+         	   			// console.log(' top: ' + ui.position.top + ' left: ' + ui.position.left);
         			}
 				});
-				$(e.target).resizable({
+				$("#system-selector").resizable({
 					handles: "all",
 /*					drag: function(e, ui) {
          	   			console.log(' top: ' + ui.position.top + ' left: ' + ui.position.left);

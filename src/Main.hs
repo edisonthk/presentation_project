@@ -72,9 +72,7 @@ main = do
     -- loadSnapTH is a list of additional directories to watch for changes to
     -- trigger reloads in development mode. It doesn't need to include source
     -- directories, those are picked up automatically by the splice.
-    (conf, site, cleanup) <- $(loadSnapTH [| getConf |]
-                                          'getActions
-                                          ["snaplets/heist/templates"])
+    (conf, site, cleanup) <- $(loadSnapTH [| getConf |] 'getActions ["snaplets/heist/templates"])
 
     _ <- try $ httpServe conf site :: IO (Either SomeException ())
     cleanup

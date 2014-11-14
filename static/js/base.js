@@ -71,6 +71,26 @@ function appendHTML(html){
   // HTMLやCSSなどを更新
   document.getElementById(iframeid).contentWindow.updateElement(_data);
 
+  // dragging callback 
+  // このイベントはselectorがdraggingされた時に発生するイベント
+  document.getElementById(iframeid).contentWindow.selectorDragCallback = function(selector, dragTop, dragLeft) {
+    // selectorがdraggingされた時に、_dataのデータをdragTopとdragLeftの値に基づいて更新
+    for(var i =0 ;i<_data.length; i++){
+      if(_data[i].name === selector.getSelectedElementId()){
+        _data[i]["characteristics"]["x"] = dragLeft + "px";
+        _data[i]["characteristics"]["y"] = dragTop + "px";
+        break;
+      }
+    }
+
+    // _dataを更新したので、メニューのデータを反映させる
+    menu.udpateDataAndSetSelector(_data,selector);
+
+    // _dataを更新したので、updateElementでviewを反映させる
+    document.getElementById(iframeid).contentWindow.updateElement(_data);
+  }
+
+
   // divが選択された祭にこのコールバックイベントが発生する
   // この関数の中にメニューの内容を変更イベントなどを作ってください。
   // １番目のパラメータselectorはSelectorクラスだから

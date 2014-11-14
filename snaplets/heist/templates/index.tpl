@@ -21,7 +21,9 @@
       </li>
       <li id="displaymenu"><p>Display</p>
         <ul>
-          <li><p onClick="changeIframe()">Change size of main window.</p></li>
+          <li>
+            <p onClick="changeIframe()">Change size of main window.</p>
+          </li>
           <li>
             <p onClick="changeIframe()">Change size of main window.</p>
           </li>

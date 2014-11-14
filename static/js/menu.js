@@ -216,7 +216,7 @@ Menu.prototype.buildHtml = function() {
 		      	triH.addEventListener("change",MenuEvent.triHChangeEvent,false);
 
 		    }else if(t.shape === "circle") {
-
+		    	
 		    }
 		    _e.show();
 	    }
