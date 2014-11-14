@@ -28,12 +28,13 @@ function iframeDoc(id){
   }
 }
 
-function appendHTML(html){
-  
+var callCount = 0; //appendHTMLを呼び出された回数をカウントします。objectの区別のために導入。
 
+function appendHTML(html){
+  callCount += 1; //呼ばれる度に+1
   if(html=="san"){
     var triangle = {};
-    triangle["name"] = "object1";
+    triangle["name"] = "object" + callCount;
     triangle["type"] = "object";
     triangle["characteristics"] = {"color":"green","shape":"triangle","x":"150px","y":"120px","height":"150px","width":"200px"};
     // triangle["click"] = [{
@@ -44,17 +45,13 @@ function appendHTML(html){
     _data.push(triangle);
   }
   if(html=="circ"){
-    var triangle = {};
-    triangle["name"] = "object1";
-    triangle["type"] = "object";
-    triangle["characteristics"] = {"color":"red","shape":"triangle","x":"250px","y":"200px","height":"100px","width":"150px"};
-    _data.push(triangle);
-    //var circle = {};
-    //circle["name"] = "object2";
-    //circle["type"] = "object";
-    //circle["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"40px"};
-    //_data.push(circle);
+    var circle = {};
+    circle["name"] = "object" + callCount;
+    circle["type"] = "object";
+    circle["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"40px"};
+    _data.push(circle);
   }
+  /*
   var ani = {};
   ani["name"] = "ani";
   ani["type"] = "animation";
@@ -66,7 +63,7 @@ function appendHTML(html){
     }
   };
   _data.push(ani);
-  //console.log(_data);
+  */
 
   // HTMLやCSSなどを更新
   document.getElementById(iframeid).contentWindow.updateElement(_data);
@@ -96,24 +93,13 @@ function appendHTML(html){
     menu.hide();
   }
 
-
   // divが選択された祭にこのコールバックイベントが発生する
   // この関数の中にメニューの内容を変更イベントなどを作ってください。
   // １番目のパラメータselectorはSelectorクラスだから
   document.getElementById(iframeid).contentWindow.elementSelectedCallback = function(selector) {
-    
-
     // メニューのHTMLを変更
     // そして、メニューの中身を変更
     menu.udpateDataAndSetSelector(_data,selector);
-    
-    
-    /*
-    var eleX = selector.getSelectedElement().style.top; var numX = eleX.match(/\d/g).join("");
-    var eleY = selector.getSelectedElement().style.left; var numY = eleY.match(/\d/g).join("");
-    var eleW = selector.getSelectedElement().style.borderRightWidth; var numW = eleW.match(/\d/g).join("");
-    var eleH = selector.getSelectedElement().style.borderBottomWidth; var numH = eleH.match(/\d/g).join("");
-    */
   }
 }
 function showDialog() {

@@ -127,7 +127,7 @@
               <!-- triangle -->
               <div class="sidemenu sidemenu-triangle">
                 <nobr>&nbsp;
-                  <label>y:&nbsp;<input type="number" id="tri-x" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&amp;</label>
+                  <label>x:&nbsp;<input type="number" id="tri-x" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
                   <label>y:&nbsp;<input type="number" id="tri-y" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px</label>
                 </nobr>
                 <br /><br />
@@ -136,7 +136,7 @@
                 </nobr>
                 <br /><br />
                 <nobr>&nbsp;
-                  <label>w:&nbsp;<input type="number" id="tri-w" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&amp;</label>
+                  <label>w:&nbsp;<input type="number" id="tri-w" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
                   <label>h:&nbsp;<input type="number" id="tri-h" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px</label>
                 </nobr>
                 <br />
@@ -144,7 +144,7 @@
               <!-- circle -->
               <div class="sidemenu sidemenu-circle">
                 <nobr>
-                  <label>x:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&amp;</label>
+                  <label>x:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
                   <label>y:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px</label>
                 </nobr>
                 <br /><br />
@@ -153,7 +153,7 @@
                 </nobr>
                 <br /><br />
                 <nobr>
-                  <label>radius:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&amp;</label>
+                  <label>radius:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 </nobr>
               </div>
               <!-- END: Side menu = Property -->
