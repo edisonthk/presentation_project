@@ -79,10 +79,8 @@ function appendHTML(html){
         break;
       }
     }
-
     // _dataを更新したので、メニューのデータを反映させる
     menu.udpateDataAndSetSelector(_data,selector);
-
     // _dataを更新したので、updateElementでviewを反映させる
     document.getElementById(iframeid).contentWindow.updateElement(_data);
   }

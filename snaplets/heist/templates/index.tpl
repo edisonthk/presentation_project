@@ -127,8 +127,8 @@
               <!-- triangle -->
               <div class="sidemenu sidemenu-triangle">
                 <nobr>&nbsp;
-                  <label>x:&nbsp;<input type="number" id="tri-x" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                  <label>y:&nbsp;<input type="number" id="tri-y" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px</label>
+                  <label>x:&nbsp;<input type="number" id="tri-x" min="-50" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                  <label>y:&nbsp;<input type="number" id="tri-y" min="-50" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px</label>
                 </nobr>
                 <br /><br />
                 <nobr>&nbsp;
@@ -144,8 +144,8 @@
               <!-- circle -->
               <div class="sidemenu sidemenu-circle">
                 <nobr>
-                  <label>x:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                  <label>y:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px</label>
+                  <label>x:&nbsp;<input type="number" id="cir-x" min="-50" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                  <label>y:&nbsp;<input type="number" id="cir-y" min="-50" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px</label>
                 </nobr>
                 <br /><br />
                 <nobr>
@@ -153,7 +153,7 @@
                 </nobr>
                 <br /><br />
                 <nobr>
-                  <label>radius:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                  <label>radius:&nbsp;<input type="number" id="cir-rad" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 </nobr>
               </div>
               <!-- END: Side menu = Property -->

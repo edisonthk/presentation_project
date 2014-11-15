@@ -107,8 +107,6 @@ Menu.prototype.setAnimationMenu = function() {
 	}
 }
 
-
-
 MenuEvent.prototype.triXChangeEvent = function(event){
 	MenuEvent.prototype.baseChangeEvent(event, function(MENU_KEY, _selected_object_name, new_value ,data) {
 		// _dataを更新
@@ -146,6 +144,36 @@ MenuEvent.prototype.triHChangeEvent = function(event){
 		for(var i=0;i<data.length;i++){
 			if(data[i].name == _selected_object_name){
 				data[i][MENU_KEY.CHARACTERISTICS]["height"] = new_value + "px";
+			}
+		}
+	});
+}
+MenuEvent.prototype.cirXChangeEvent = function(event){
+	MenuEvent.prototype.baseChangeEvent(event, function(MENU_KEY, _selected_object_name, new_value ,data) {
+		// _dataを更新
+		for(var i=0;i<data.length;i++){
+			if(data[i].name == _selected_object_name){
+				data[i][MENU_KEY.CHARACTERISTICS]["x"] = new_value + "px";
+			}
+		}
+	});
+}
+MenuEvent.prototype.cirYChangeEvent = function(event){
+	MenuEvent.prototype.baseChangeEvent(event, function(MENU_KEY, _selected_object_name, new_value ,data) {
+		// _dataを更新
+		for(var i=0;i<data.length;i++){
+			if(data[i].name == _selected_object_name){
+				data[i][MENU_KEY.CHARACTERISTICS]["y"] = new_value + "px";
+			}
+		}
+	});
+}
+MenuEvent.prototype.cirRadChangeEvent = function(event){
+	MenuEvent.prototype.baseChangeEvent(event, function(MENU_KEY, _selected_object_name, new_value ,data) {
+		// _dataを更新
+		for(var i=0;i<data.length;i++){
+			if(data[i].name == _selected_object_name){
+				data[i][MENU_KEY.CHARACTERISTICS]["radius"] = new_value + "px";
 			}
 		}
 	});
@@ -190,12 +218,9 @@ Menu.prototype.buildHtml = function() {
 
 	    if(_e.hasClass("sidemenu-"+t.shape)){
 	    	if(t.shape === "triangle") {
-	    		
-
 	    		var triX = document.getElementById("tri-x");
 		      	triX.value = t.propertyMenu.x.match(/\d/g).join("");
 		      	triX.addEventListener("change",MenuEvent.triXChangeEvent,false);
-
 
 		      	var triY = document.getElementById("tri-y");
 		      	triY.value = t.propertyMenu.y.match(/\d/g).join("");
@@ -205,25 +230,29 @@ Menu.prototype.buildHtml = function() {
 		      	triW.value = t.propertyMenu.width.match(/\d/g).join("");
 		      	triW.addEventListener("change",MenuEvent.triWChangeEvent,false);
 
-
 		      	var triH = document.getElementById("tri-h");
 		      	triH.value = t.propertyMenu.height.match(/\d/g).join("");
 		      	triH.addEventListener("change",MenuEvent.triHChangeEvent,false);
-
 		    }else if(t.shape === "circle") {
-		    	
+	    		var cirX = document.getElementById("cir-x");
+		      	cirX.value = t.propertyMenu.x.match(/\d/g).join("");
+		      	cirX.addEventListener("change",MenuEvent.cirXChangeEvent,false);
+
+		      	var cirY = document.getElementById("cir-y");
+		      	cirY.value = t.propertyMenu.y.match(/\d/g).join("");
+		      	cirY.addEventListener("change",MenuEvent.cirYChangeEvent,false);
+
+		      	var cirrad = document.getElementById("cir-rad");
+		      	cirrad.value = t.propertyMenu.radius.match(/\d/g).join("");
+		      	cirrad.addEventListener("change",MenuEvent.cirRadChangeEvent,false);
 		    }
 		    _e.show();
-	    }
-	    
+	    }   
   });
-
 };
 
 Menu.prototype.hide = function() {
-
 	$("#propertyMenu, #color, #xywh").find(".sidemenu").each(function(index,element){
 	    $(element).hide();
 	});
-
 }

@@ -17,27 +17,24 @@
 	$(function(){
 		var _s = new Selector("system-selector");
 		$(document).click(function(e){
-/*			$("div").each(function(index,element){
-				$(element).removeClass("clicked");
-			});*/
 			if($(e.target).is("div")&& !($(e.target).hasClass("selector"))){
 				_s.selectElement(e);
 				if(typeof elementSelectedCallback === "function"){
 					elementSelectedCallback(_s);
 				}
 				$("#system-selector").draggable({
+					opacity: 0.5,
+					containment: '#iframe',
 					drag: function(e, ui) {
 						if(typeof selectorDragCallback === "function"){
 							selectorDragCallback(_s,ui.position.top, ui.position.left);
 						}
          	   			// console.log(' top: ' + ui.position.top + ' left: ' + ui.position.left);
         			}
+        			//handle: "div"
 				});
 				$("#system-selector").resizable({
-					handles: "all",
-/*					drag: function(e, ui) {
-         	   			console.log(' top: ' + ui.position.top + ' left: ' + ui.position.left);
-        			}*/
+					handles: "all"
 				});
 			}else if(!($(e.target).is("div"))){
 				if(typeof selectorDeselectedCallback === "function"){
@@ -86,7 +83,6 @@
 </head>
 
 <body>
-
 	<div id="system-selector" class="selector">
 		<div class="selector-border selector-top-left"></div>
 		<div class="selector-border selector-top-right"></div>
