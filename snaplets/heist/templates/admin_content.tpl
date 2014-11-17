@@ -24,7 +24,7 @@
 				}
 				$("#system-selector").draggable({
 					opacity: 0.5,
-					containment: '#iframe',
+					containment: "parent",
 					drag: function(e, ui) {
 						if(typeof selectorDragCallback === "function"){
 							selectorDragCallback(_s,ui.position.top, ui.position.left);
