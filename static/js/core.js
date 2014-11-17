@@ -2,8 +2,48 @@
   v2014.10.29 last updated by LikWee
 
   At 2014.10.29, bugs fixed on Array detect on multiple frame in single window
+  At 2014.11.14, bugs fixed on compiling element already created at writeDocuments method
+  At 2014.11.17, new features of frames and textbox
 */
-var CoreHelpers = function(){};
+var CoreHelpers = function() {}
+var CompiledObject = function(json_obj) { this.initial(json_obj); }
+var CompiledAnimation = function(json_anim, compiled_animation_name, target_animation_element) { this.initial(json_anim, compiled_animation_name, target_animation_element); }
+var ParsingEngine = function() {this.initial();}
+var FrameHelper = function(key, frames, imgTag){ this.initial(key, frames, imgTag); }
+
+// default value
+// if there is any configuration by user, the value's below will be 
+// overwr by user value
+ParsingEngine.prototype.default = {
+  height: "100px",
+  width: "100px",
+  radius: "50px",
+  backgroundColor: "blue",
+  animeDuration: "5s",
+  animeInitial: "0s",
+  frameDuration: 150,
+}
+
+// FrameHelper Class
+// This class is used to assist animation object by frames
+FrameHelper.prototype.initial = function(key, frames, imgTag) {
+  this.key = key;
+  this[key] = 0;
+  this.imgTag = imgTag;
+  this.frames = frames;
+}
+FrameHelper.prototype.intervalFunct = function(){
+  var t = this;
+  var _count = t[t.key];
+  t.imgTag.src = t.frames[_count];
+  _count += 1;
+  if(_count >= t.frames.length){
+    t[t.key] = 0;
+  }else{
+    t[t.key] = _count;  
+  }
+  
+}
 
 CoreHelpers.prototype.splitNumberAndUnit = function(len){
   var result = len.match(/(\d*\.?\d*)(.*)/);
@@ -31,7 +71,11 @@ CoreHelpers.prototype.isSecondUnit = function(attr){
   return fistCharCode > 48 && fistCharCode < 57 && lastCharCode == 115;
 }
 
-var CompiledObject = function(json_obj) {
+// ======= configure default value ==========
+//
+// styling element with default value
+CompiledObject.prototype.initial = function(json_obj){
+
   var t = this;
 
   t.name = json_obj["name"];
@@ -63,9 +107,21 @@ var CompiledObject = function(json_obj) {
     }
   }
 
+  if(json_obj["type"] === "object_frame"){
+    t.frames = json_obj["frames"];
+    if(typeof json_obj["frameDuration"] !== "undefined"){
+      t.frameDuration = parseInt(json_obj["frameDuration"]);
+      if(isNaN(t.frameDuration)) {
+        t.frameDuration = t.default.frameDuration;
+      }
+    }else{
+      t.frameDuration = t.default.frameDuration;
+    }
+  }
+
   // 
-  this.compiled_css = {};
-  this.compiled_click_event = [];
+  t.compiled_css = {};
+  t.compiled_click_event = [];
 
   // implement function of core helpers
   var _c = new CoreHelpers();
@@ -73,20 +129,20 @@ var CompiledObject = function(json_obj) {
     t[_func] = _c[_func];
   }
 
+  t.default_style_obj = {};
 
-  t.initial();
-}
-// ======= configure default value ==========
-//
-// styling element with default value
-CompiledObject.prototype.initial = function(){
-  this.default_style_obj = {};
+  t.default_style_obj["position"] = "absolute";
 
-  this.default_style_obj["position"] = "absolute";
-  this.default_style_obj["width"] = this.default.width;
-  this.default_style_obj["height"] = this.default.height;
-  this.default_style_obj["radius"] = this.default.radius;
-  this.default_style_obj["backgroundColor"] = this.default.backgroundColor;
+  if(this.type === "object_frame"){
+    t.default_style_obj["width"] = "auto";
+    t.default_style_obj["height"] = "auto";
+    t.default_style_obj["backgroundColor"] = "transparent";
+  }else{
+    t.default_style_obj["width"] = t.default.width;
+    t.default_style_obj["height"] = t.default.height;
+    t.default_style_obj["radius"] = t.default.radius;
+    t.default_style_obj["backgroundColor"] = t.default.backgroundColor;
+  }
 }
 // push group_name to object.groups if group_name is not added.
 // else, neglect and do nothing
@@ -113,11 +169,15 @@ CompiledObject.prototype.compile = function(){
 CompiledObject.prototype.compileStyle = function(characteristics){
   var t = this;
   var results = {};
+
+  if(typeof characteristics === "undefined"){
+    return results;
+  }
+
   // copy default to results
   for(var attr in this.default_style_obj){
     results[attr] = this.default_style_obj[attr];
   }
-
   if(t.hasAttr(characteristics,"color")){
     results["backgroundColor"] = characteristics["color"];
   }
@@ -151,6 +211,28 @@ CompiledObject.prototype.compileStyle = function(characteristics){
   if(t.hasAttr(characteristics,"opacity")){
     results["opacity"] = characteristics["opacity"];
   }
+  if(t.hasAttr(characteristics,"text")){
+
+    results["text"] = characteristics["text"];
+    // only available if text characteristics is exists
+    if(t.hasAttr(characteristics,"fontSize")){
+      results["fontSize"] = characteristics["fontSize"];
+    }
+    if(t.hasAttr(characteristics,"fontColor")){
+      results["color"] = characteristics["fontColor"];
+    }
+    if(t.hasAttr(characteristics,"textAlign")){
+      // translate language to css
+      if(characteristics["textAlign"] == "middle"){characteristics["textAlign"] = "center";}
+      results["textAlign"] = characteristics["textAlign"]; 
+    }
+    if(t.hasAttr(characteristics,"verticalAlign")){
+      if(characteristics["textAlign"] == "center"){characteristics["textAlign"] = "middle";}
+      results["verticalAlign"] = characteristics["verticalAlign"];
+      results["lineHeight"] = results["height"];
+      results["display"] = "block";
+    }
+  }
   if(t.hasAttr(characteristics,"shape")){
     if(characteristics["shape"] === "triangle"){
       var _h =  t.splitNumberAndUnit(results["height"]);
@@ -176,7 +258,8 @@ CompiledObject.prototype.compileStyle = function(characteristics){
 CompiledObject.prototype.hasAttr = function(compiler_obj, attr){
   return (typeof compiler_obj[attr] !== "undefined");
 }
-var CompiledAnimation = function(json_anim, compiled_animation_name, target_animation_element) {
+
+CompiledAnimation.prototype.initial = function(json_anim, compiled_animation_name, target_animation_element) {
   // ユーザが定義したキーフレームの名前
   this.original_keyframe_name = json_anim["name"];
   this.type = json_anim["type"];
@@ -223,8 +306,7 @@ CompiledAnimation.prototype.compile = function() {
 
 }
 
-
-var ParsingEngine = function() {
+ParsingEngine.prototype.initial = function() {
   this.compiled_objects = [];
   this.compiled_keyframes = [];
 
@@ -237,39 +319,89 @@ var ParsingEngine = function() {
 
 }
 
-// default value
-// if there is any configuration by user, the value's below will be 
-// overwr by user value
-ParsingEngine.prototype.default = {
-  height: "100px",
-  width: "100px",
-  radius: "50px",
-  backgroundColor: "blue",
-  animeDuration: "5s",
-  animeInitial: "0s"
+// make sure t
+ParsingEngine.prototype.generateUniqueString = function() {
+  var t = this;
+  if(typeof t.history_unique_string_generated === "undefined"){
+    t.history_unique_string_generated = [];
+  }
+  var rst = t.generateRandomString();
+  var foundFlag = false;
+  var initialFlag = true;
+  for(var try_index = 0;(try_index < 3 && foundFlag) || initialFlag; try_index++){
+    foundFlag = false;
+    if(initialFlag){
+      initialFlag = false;
+    }
+    for(var i = 0;i<t.history_unique_string_generated.length;i++){
+      if(t.history_unique_string_generated[i] === rst){
+        rst = t.generateRandomString();
+        foundFlag = true;
+        break;
+      }
+    }
+  }
+
+  if(t.history_unique_string_generated.length >= 3){
+    for(var j = t.history_unique_string_generated.length-1;j>0;j--){
+      t.history_unique_string_generated[j] = t.history_unique_string_generated[j-1];
+    }
+    t.history_unique_string_generated[0] = rst;
+  }else{
+    t.history_unique_string_generated.push(rst);
+  }
+
+  return rst;
 }
 
+// generate random String
+ParsingEngine.prototype.generateRandomString = function() {
+  var length = 50;
+  var mask = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  
+  var result = '';
+  for (var i = length; i > 0; --i) result += mask[Math.round(Math.random() * (mask.length - 1))];
+  return result;
+}
+
+// There are two use in styling() function, RETRIEVE or SET value
+// styling can used to RETRIEVE the element style value or
+// 
 ParsingEngine.prototype.styling = function (ele, css_key, css_value){
 
+  // if css_value is not defined, return value
+  // else set css_value
   if(typeof css_value === "undefined"){
     if(css_key === "height"){
       return ele.offsetHeight;
     }else if(css_key === "width"){
       return ele.offsetWidth;
+    }else if(css.key === "text"){
+      return ele.innerHTML;
     }
     return ele.style[css_key];
   }
-  ele.style[css_key] = css_value;
+
+  // set css_value if css_value is defined.
+  if(css_key === "text"){
+    ele.innerHTML = css_value;
+  }else{
+    ele.style[css_key] = css_value;
+  }
 }
 
-// Write html based on compiler_obj
+// create or update div element based on compiler_obj
 ParsingEngine.prototype.compileElement = function(compiler_obj, ele){
+
+  var t = this;
+
   // write compiler_obj["name"] to element id
   ele.id = compiler_obj["name"];
 
+  console.log(compiler_obj);
   // write compiler_obj["compiled_css"] to element css
   for (var css in compiler_obj["compiled_css"]) {
-    this.styling(ele,css,compiler_obj["compiled_css"][css]);
+    t.styling(ele,css,compiler_obj["compiled_css"][css]);
   };
 
   // write compiler_obj["group"] to element class name
@@ -289,8 +421,8 @@ ParsingEngine.prototype.compileElement = function(compiler_obj, ele){
     var retain_animation_flag = false;
 
     // initialize compiler_obj
-    _click_event["animationDuration"] = this.default["animeDuration"];
-    _click_event["webkitAnimationDuration"] = this.default["animeDuration"];
+    _click_event["animationDuration"] = t.default["animeDuration"];
+    _click_event["webkitAnimationDuration"] = t.default["animeDuration"];
 
     for(var eve in _compiled_click_event[i]){
       if(eve === "animation"){
@@ -308,6 +440,16 @@ ParsingEngine.prototype.compileElement = function(compiler_obj, ele){
     _event_assistance["retain_style_after_animation"] = retain_animation_flag;
     _event_assistance["action"] = _click_event;
     _click_event_manager.push(_event_assistance);
+  }
+  
+  
+  // write object_frame
+  if(compiler_obj["type"] === "object_frame"){
+    var key = t.generateUniqueString();
+    var frames = compiler_obj["frames"];
+    var imgTag = ele;
+    var __f = new FrameHelper(key, frames, imgTag);
+    setInterval(function(){__f.intervalFunct();} , compiler_obj["frameDuration"]);
   }
 
 
@@ -573,7 +715,11 @@ ParsingEngine.prototype.writeDocuments = function() {
     var ele = this.compiled_objects[i]["element"];
     
     if(this.compiled_objects[i]["element"] == null){
-      ele = document.createElement('div');
+      if(this.compiled_objects[i]["type"] == "object_frame"){
+        ele = document.createElement('img');
+      }else{
+        ele = document.createElement('div');
+      }
       document.body.appendChild(ele);
     }
     this.compileElement(this.compiled_objects[i],ele);
@@ -641,8 +787,24 @@ ParsingEngine.prototype.checkingGrammer = function(json_obj){
   if(json_obj["type"] === "animation"){
     if(typeof json_obj["animate"] === "undefined"){
       // obj["animate"] is compulsory layer 1 
-      // if there is no animate attribute found n layer 1, error will be throw
+      // if there is no animate attribute found in layer 1, error will be thrown
       throw "Object[\"animate\"] is missing in object \""+json_obj["name"]+"\"";
+    }
+  }else if(json_obj["type"] === "object_frame") {
+    if(typeof json_obj["frames"] === "undefined"){
+      // obj["frames"] is compulsory layer 1 for object_frame
+      // if there is no frames attribute found in layer 1, error will be thrown 
+      throw "Object[\"frames\"] is missing in object \""+json_obj["name"]+"\"";
+    }else{
+      // Due to multiple frame in single document, my_array instanceof Array is unable to checking either my_array is Array or not.
+      // Solution on this problem can be solved by Object.prototype.toString.call(temp_json_click) === '[object Array]')
+      //
+      // for more details ... 
+      // http://stackoverflow.com/a/6473338/1799322
+      if(Object.prototype.toString.call(json_obj["frames"]) !== '[object Array]'){
+        // obj["frames"] must be array, check if object or Array
+        throw "Replace code with Object branket {} to Array branket [], example) Object[\"frames\"]={...} to Object[\"frames\"]=[...]";
+      }
     }
   }
 }
@@ -662,7 +824,7 @@ ParsingEngine.prototype.updateElement = function(data) {
       // there is no grammar mistake in json file
       this.checkingGrammer(json_obj);
 
-      if(json_obj["type"] === "object"){
+      if(json_obj["type"] === "object" || json_obj["type"] === "object_frame"){
         // compile object
         var compiled_obj = new CompiledObject(json_obj);
         this.compiled_objects.push(compiled_obj);  
@@ -687,10 +849,7 @@ ParsingEngine.prototype.updateElement = function(data) {
   // compile action, such as click,hover,
   this.compileClickEventAndAnimation(json_anims);
   
-  // compile keyframes
-  for(var compiled_kf_index = 0;compiled_kf_index < this.compiled_keyframes.length;compiled_kf_index++){
-    // e.parseToCompilerKeyFrame(compiled_kf_index);
-  }
+  
   // last step of compiling
   // convert compiled_keyframes, compiled_objs, all kinds of compiled items to HTML, JavaScript and CSS
   this.writeDocuments();
