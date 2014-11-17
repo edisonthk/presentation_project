@@ -1,4 +1,5 @@
 <apply template="base">
+<script type="text/javascript" src="/js/jscolor/jscolor.js"></script>
 <div id="container">
   <!-- ▼ ヘッダー -->
   <div id="header">
@@ -165,13 +166,28 @@
             <aa id="color">
               <!-- BEGIN: Side menu = Style -->
               <!-- triangle -->
-              <div class="sidemenu sidemenu-triangle">
+              <div class="stylemenu stylemenu-triangle">
                   <!--<link rel="stylesheet" type="text/css" href="jquery-ui.css">
                   <link href="evol.colorpicker.css" rel="stylesheet" type="text/css">
                   <div style="width:128px;">
                     <input style="width:100px;" id="mycolor" class="colorPicker evo-cp0" />
                     <span class="evo-colorind" style="background-color:#8db3e2"></span>
                   </div>-->
+                <input class="color">
+                <nobr>&nbsp;
+                  <label>x:&nbsp;<input type="number" id="tri-x" min="-50" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                  <label>y:&nbsp;<input type="number" id="tri-y" min="-50" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px</label>
+                </nobr>
+                <br /><br />
+                <nobr>&nbsp;
+                  <label>z:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0"></label>
+                </nobr>
+                <br /><br />
+                <nobr>&nbsp;
+                  <label>w:&nbsp;<input type="number" id="tri-w" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                  <label>h:&nbsp;<input type="number" id="tri-h" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;">px</label>
+                </nobr>
+                <br />
               </div>
               <!-- circle -->
               <div class="sidemenu sidemenu-circle">
