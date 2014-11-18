@@ -30,7 +30,6 @@ Selector.prototype.selectElement = function(event) {
 	this.moveToSelectedElement(event.target);
 }
 Selector.prototype.moveToSelectedElement = function(targetElement) {
-	console.log(targetElement);
 	if(typeof targetElement === "string"){
 		targetElement = document.getElementById(targetElement);
 

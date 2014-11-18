@@ -1,16 +1,19 @@
 /* 
-  v2014.10.29 last updated by LikWee
+  v2014.11.18 last updated by LikWee
 
   At 2014.10.29, bugs fixed on Array detect on multiple frame in single window
   At 2014.11.14, bugs fixed on compiling element already created at writeDocuments method
   At 2014.11.17, new features of frames and textbox
+  At 2014.11.18, bugs fixed on re-update object_frame
 */
 var CoreHelpers = function() {}
 var CompiledObject = function(json_obj) { this.initial(json_obj); }
 var CompiledAnimation = function(json_anim, compiled_animation_name, target_animation_element) { this.initial(json_anim, compiled_animation_name, target_animation_element); }
 var ParsingEngine = function() {this.initial();}
 var FrameHelper = function(key, frames, imgTag){ this.initial(key, frames, imgTag); }
-
+var CoreConstants = {
+  getSelectors : function() { return "img,div,iframe"; }
+}
 // default value
 // if there is any configuration by user, the value's below will be 
 // overwr by user value
@@ -330,6 +333,10 @@ ParsingEngine.prototype.initial = function() {
 
   // For checkingGrammer function to checking either name is unique or not.
   this.name_used_list = [];
+
+  // For object_frame, use clearInterval to clear all interval function stored in 
+  // intervalFunctionList and then update again
+  this.intervalFunctionList = [];
 
   // For generateUniqueKeyFrameId function to generate unique keyframe name
   this.compile_index = 1;
@@ -705,7 +712,8 @@ ParsingEngine.prototype.compileSpecialObjectElement = function(compiler_obj,ele)
     var frames = compiler_obj["frames"];
     var imgTag = ele;
     var __f = new FrameHelper(key, frames, imgTag);
-    setInterval(function(){__f.intervalFunct();} , compiler_obj["frameDuration"]);
+    var __interval = setInterval(function(){__f.intervalFunct();} , compiler_obj["frameDuration"]);
+    this.intervalFunctionList.push(__interval);
   }else if(compiler_obj["type"] === "object_youtube"){
     ele.src = this.convertYoutubeUrl(compiler_obj["src"]);
     ele.setAttribute("frameborder","0");
@@ -871,6 +879,13 @@ ParsingEngine.prototype.checkingGrammer = function(json_obj){
 // call this method when json data is changed, 
 // pass json data to 1st parameter
 ParsingEngine.prototype.updateElement = function(data) {
+
+  console.log(this.intervalFunctionList);
+  for(var i = 0;i<this.intervalFunctionList.length;i++){
+    clearInterval(this.intervalFunctionList[i]);
+  }
+  this.intervalFunctionList = [];
+
   var json_anims = [];
 
   // compile layer 1

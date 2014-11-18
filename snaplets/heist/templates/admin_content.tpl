@@ -8,16 +8,17 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/js/selector.js"></script>
 	<script>
+	core = new ParsingEngine();
 	// コアスクリプト
 	function updateElement(_data){
-		core = new ParsingEngine();
 		core.updateElement(_data);
 	}
 
 	$(function(){
 		var _s = new Selector("system-selector");
 		$(document).click(function(e){
-			if($(e.target).is("div")&& !($(e.target).hasClass("selector"))){
+			if($(e.target).is(CoreConstants.getSelectors())&& !($(e.target).hasClass("selector"))){
+				console.log(e.target);
 				_s.selectElement(e);
 				if(typeof elementSelectedCallback === "function"){
 					elementSelectedCallback(_s);

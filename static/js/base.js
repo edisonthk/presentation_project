@@ -45,10 +45,30 @@ function appendHTML(html){
     _data.push(triangle);
   }
   if(html=="circ"){
-    var circle = {};
-    circle["name"] = "object" + callCount;
-    circle["type"] = "object";
-    circle["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"40px"};
+    var circle = {
+          "name":"my_frame_object",
+          "type":"object_frame",
+          "characteristics": {"x":"200px","y":"200px"},
+          "frames": [
+            "/img/explosion/explosion_01.png",
+            "/img/explosion/explosion_02.png",
+            "/img/explosion/explosion_03.png",
+            "/img/explosion/explosion_04.png",
+            "/img/explosion/explosion_05.png",
+            "/img/explosion/explosion_06.png",
+            "/img/explosion/explosion_07.png",
+            "/img/explosion/explosion_08.png",
+            "/img/explosion/explosion_09.png",
+            "/img/explosion/explosion_10.png",
+            "/img/explosion/explosion_11.png",
+            "/img/explosion/explosion_12.png",
+            "/img/explosion/explosion_13.png",
+            "/img/explosion/explosion_14.png",
+            "/img/explosion/explosion_15.png",
+            "/img/explosion/explosion_16.png",
+            "/img/explosion/explosion_17.png",
+          ],
+        }
     _data.push(circle);
   }
   /*
