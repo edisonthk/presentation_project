@@ -137,6 +137,10 @@ CompiledObject.prototype.initial = function(json_obj){
     t.default_style_obj["width"] = "auto";
     t.default_style_obj["height"] = "auto";
     t.default_style_obj["backgroundColor"] = "transparent";
+  }else if(this.type === "object_youtube"){
+    t.default_style_obj["width"] = "560px";
+    t.default_style_obj["height"] = "315px";
+    t.src = json_obj["src"];
   }else{
     t.default_style_obj["width"] = t.default.width;
     t.default_style_obj["height"] = t.default.height;
@@ -390,111 +394,6 @@ ParsingEngine.prototype.styling = function (ele, css_key, css_value){
   }
 }
 
-// create or update div element based on compiler_obj
-ParsingEngine.prototype.compileElement = function(compiler_obj, ele){
-
-  var t = this;
-
-  // write compiler_obj["name"] to element id
-  ele.id = compiler_obj["name"];
-
-  console.log(compiler_obj);
-  // write compiler_obj["compiled_css"] to element css
-  for (var css in compiler_obj["compiled_css"]) {
-    t.styling(ele,css,compiler_obj["compiled_css"][css]);
-  };
-
-  // write compiler_obj["group"] to element class name
-  var _group = "";
-  for (var i = 0; i < compiler_obj["groups"].length; i++) {
-    _group += compiler_obj["groups"][i];
-  };
-  ele.className = _group;
-
-  // write compiler_obj["click"] to element onclick
-  var _click_event_manager = [];
-  var _compiled_click_event = compiler_obj["compiled_click_event"];
-  for(var i = 0; i < _compiled_click_event.length;i++){
-    var _event_assistance = {};
-    var _name = _compiled_click_event[i]["name"];
-    var _click_event = {};
-    var retain_animation_flag = false;
-
-    // initialize compiler_obj
-    _click_event["animationDuration"] = t.default["animeDuration"];
-    _click_event["webkitAnimationDuration"] = t.default["animeDuration"];
-
-    for(var eve in _compiled_click_event[i]){
-      if(eve === "animation"){
-        _click_event["animationName"] = _compiled_click_event[i][eve];
-        _click_event["webkitAnimationName"] = _compiled_click_event[i][eve];
-      }else if(eve === "animationDuration"){
-        _click_event["animationDuration"] = _compiled_click_event[i][eve];
-        _click_event["webkitAnimationDuration"] = _compiled_click_event[i][eve];
-      }else if(eve === "retainStyleAfterAnimation"){
-        retain_animation_flag = (_compiled_click_event[i][eve] === "true");
-      }
-    }
-
-    _event_assistance["name"] = _name;
-    _event_assistance["retain_style_after_animation"] = retain_animation_flag;
-    _event_assistance["action"] = _click_event;
-    _click_event_manager.push(_event_assistance);
-  }
-  
-  
-  // write object_frame
-  if(compiler_obj["type"] === "object_frame"){
-    var key = t.generateUniqueString();
-    var frames = compiler_obj["frames"];
-    var imgTag = ele;
-    var __f = new FrameHelper(key, frames, imgTag);
-    setInterval(function(){__f.intervalFunct();} , compiler_obj["frameDuration"]);
-  }
-
-
-
-  ele.onclick = function(){
-    for(var j=0;j< _click_event_manager.length;j++){
-      var ele_first=document.getElementById(_click_event_manager[j]["name"]);
-
-      for(var _event in _click_event_manager[j]["action"]){
-        ele_first.style[_event] = "";
-      }
-      if(_click_event_manager[j]["retain_style_after_animation"]){
-        var transitionEndHandler = function(event){
-          event.stopPropagation();
-          
-          var ele_animation = e.findCompiledKeyFrameByCompiledName(event.target.style.animationName);
-          
-          var target_object = ele_animation["target_element"];
-          for(var attr in ele_animation["target_element_animation_in_json"]["100%"]){
-            target_object["characteristics"][attr] = ele_animation["target_element_animation_in_json"]["100%"][attr];
-          }
-          target_object.compile();
-          
-          // after compile, write result into css
-          for(var attr in target_object["compiled_css"]){
-            target_object["element"]["style"][attr] = target_object["compiled_css"][attr];
-          }
-        };
-
-        ele_first.addEventListener('oanimationend',transitionEndHandler,false);
-        ele_first.addEventListener('animationend',transitionEndHandler,false);
-        ele_first.addEventListener('webkitAnimationEnd',transitionEndHandler,false);
-      }
-    }
-
-    setTimeout(function(){
-      for(var j =0; j < _click_event_manager.length;j++){
-        var ele_second=document.getElementById(_click_event_manager[j]["name"]);
-        for(var _event in _click_event_manager[j]["action"]){
-          ele_second.style[_event] = _click_event_manager[j]["action"][_event];
-        }
-      }
-    },100);
-  }
-}
 // find the compiler from 
 ParsingEngine.prototype.findCompilerByName = function(name){
   for(var i = 0; i < this.compiled_objects.length; i++){
@@ -674,7 +573,125 @@ ParsingEngine.prototype.findCompiledKeyFrameById = function(keyFrameId){
   }
   return null;
 }
+// create or update div element based on compiler_obj
+ParsingEngine.prototype.compileElement = function(compiler_obj, ele){
 
+  var t = this;
+
+  // write compiler_obj["name"] to element id
+  ele.id = compiler_obj["name"];
+
+  console.log(compiler_obj);
+  // write compiler_obj["compiled_css"] to element css
+  for (var css in compiler_obj["compiled_css"]) {
+    t.styling(ele,css,compiler_obj["compiled_css"][css]);
+  };
+
+  // write compiler_obj["group"] to element class name
+  var _group = "";
+  for (var i = 0; i < compiler_obj["groups"].length; i++) {
+    _group += compiler_obj["groups"][i];
+  };
+  ele.className = _group;
+
+  // write compiler_obj["click"] to element onclick
+  var _click_event_manager = [];
+  var _compiled_click_event = compiler_obj["compiled_click_event"];
+  for(var i = 0; i < _compiled_click_event.length;i++){
+    var _event_assistance = {};
+    var _name = _compiled_click_event[i]["name"];
+    var _click_event = {};
+    var retain_animation_flag = false;
+
+    // initialize compiler_obj
+    _click_event["animationDuration"] = t.default["animeDuration"];
+    _click_event["webkitAnimationDuration"] = t.default["animeDuration"];
+
+    for(var eve in _compiled_click_event[i]){
+      if(eve === "animation"){
+        _click_event["animationName"] = _compiled_click_event[i][eve];
+        _click_event["webkitAnimationName"] = _compiled_click_event[i][eve];
+      }else if(eve === "animationDuration"){
+        _click_event["animationDuration"] = _compiled_click_event[i][eve];
+        _click_event["webkitAnimationDuration"] = _compiled_click_event[i][eve];
+      }else if(eve === "retainStyleAfterAnimation"){
+        retain_animation_flag = (_compiled_click_event[i][eve] === "true");
+      }
+    }
+
+    _event_assistance["name"] = _name;
+    _event_assistance["retain_style_after_animation"] = retain_animation_flag;
+    _event_assistance["action"] = _click_event;
+    _click_event_manager.push(_event_assistance);
+  }
+  
+  
+  // write special object such as object_frame, object_youtube
+  t.compileSpecialObjectElement(compiler_obj,ele);
+
+
+
+  ele.onclick = function(){
+    for(var j=0;j< _click_event_manager.length;j++){
+      var ele_first=document.getElementById(_click_event_manager[j]["name"]);
+
+      for(var _event in _click_event_manager[j]["action"]){
+        ele_first.style[_event] = "";
+      }
+      if(_click_event_manager[j]["retain_style_after_animation"]){
+        var transitionEndHandler = function(event){
+          event.stopPropagation();
+          
+          var ele_animation = e.findCompiledKeyFrameByCompiledName(event.target.style.animationName);
+          
+          var target_object = ele_animation["target_element"];
+          for(var attr in ele_animation["target_element_animation_in_json"]["100%"]){
+            target_object["characteristics"][attr] = ele_animation["target_element_animation_in_json"]["100%"][attr];
+          }
+          target_object.compile();
+          
+          // after compile, write result into css
+          for(var attr in target_object["compiled_css"]){
+            target_object["element"]["style"][attr] = target_object["compiled_css"][attr];
+          }
+        };
+
+        ele_first.addEventListener('oanimationend',transitionEndHandler,false);
+        ele_first.addEventListener('animationend',transitionEndHandler,false);
+        ele_first.addEventListener('webkitAnimationEnd',transitionEndHandler,false);
+      }
+    }
+
+    setTimeout(function(){
+      for(var j =0; j < _click_event_manager.length;j++){
+        var ele_second=document.getElementById(_click_event_manager[j]["name"]);
+        for(var _event in _click_event_manager[j]["action"]){
+          ele_second.style[_event] = _click_event_manager[j]["action"][_event];
+        }
+      }
+    },100);
+  }
+}
+
+ParsingEngine.prototype.compileSpecialObjectElement = function(compiler_obj,ele) {
+  if(compiler_obj["type"] === "object_frame"){
+    var key = this.generateUniqueString();
+    var frames = compiler_obj["frames"];
+    var imgTag = ele;
+    var __f = new FrameHelper(key, frames, imgTag);
+    setInterval(function(){__f.intervalFunct();} , compiler_obj["frameDuration"]);
+  }else if(compiler_obj["type"] === "object_youtube"){
+    ele.src = this.convertYoutubeUrl(compiler_obj["src"]);
+    ele.frameborder = "0";
+    ele.allowfullscreen = "";
+  }
+}
+
+ParsingEngine.prototype.convertYoutubeUrl = function(share_link) {
+  // http://youtu.be/v0NPy9e2Jnc?list=FL2lSWC08hvjkKxWzQWeVQNA
+
+  return share_link.replace("http://youtu.be/","http://www.youtube.com/embed/");
+}
 
 // Last step of compiling.
 // convert compiled_obj, compiled_items to HTML, JavaScript, and CSS
@@ -717,6 +734,8 @@ ParsingEngine.prototype.writeDocuments = function() {
     if(this.compiled_objects[i]["element"] == null){
       if(this.compiled_objects[i]["type"] == "object_frame"){
         ele = document.createElement('img');
+      }else if(this.compiled_objects[i]["type"] == "object_youtube"){
+        ele = document.createElement('iframe');
       }else{
         ele = document.createElement('div');
       }
@@ -806,6 +825,12 @@ ParsingEngine.prototype.checkingGrammer = function(json_obj){
         throw "Replace code with Object branket {} to Array branket [], example) Object[\"frames\"]={...} to Object[\"frames\"]=[...]";
       }
     }
+  }else if(json_obj["type"] === "object_youtube") {
+    if(typeof json_obj["src"] === "undefined"){
+      // obj["src"] is compulsory layer 1 for object_youtube
+      // if there is no src attribute found in layer 1, error will be thrown 
+      throw "Object[\"src\"] is missing in object \""+json_obj["name"]+"\"";
+    }
   }
 }
 
@@ -824,7 +849,7 @@ ParsingEngine.prototype.updateElement = function(data) {
       // there is no grammar mistake in json file
       this.checkingGrammer(json_obj);
 
-      if(json_obj["type"] === "object" || json_obj["type"] === "object_frame"){
+      if(json_obj["type"] === "object" || json_obj["type"] === "object_frame" || json_obj["type"] === "object_youtube"){
         // compile object
         var compiled_obj = new CompiledObject(json_obj);
         this.compiled_objects.push(compiled_obj);  

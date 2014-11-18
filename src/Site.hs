@@ -19,6 +19,8 @@ import           Snap.Snaplet.Auth.Backends.JsonFile
 import           Snap.Snaplet.Heist
 import           Snap.Snaplet.Session.Backends.CookieSession
 import           Snap.Util.FileServe
+import           Snap.Types.Headers (Headers)
+import qualified Snap.Types.Headers as H
 import           Heist
 import qualified Heist.Interpreted as I
 ------------------------------------------------------------------------------
@@ -53,18 +55,32 @@ handleLogout = logout >> redirect "/"
 ------------------------------------------------------------------------------
 -- | Handle new user form submit
 handleNewUser :: Handler App (AuthManager App) ()
+-- if method GET, use handler handleForm
+-- else if method POSt, use handler handleFormSubmit
 handleNewUser = method GET handleForm <|> method POST handleFormSubmit
   where
     handleForm = render "new_user"
     handleFormSubmit = registerUser "login" "password" >> redirect "/"
 
 
+--handleTest :: Handler App (Heist App) ()
+--handleTest = do
+--  -- HasHeaders Response
+--  -- modifyResponse :: MonadSnap m => (Response -> Response) -> m ()
+--  -- addHeader :: HasHeaders a => CI ByteString -> ByteString -> a -> a
+--  modifyResponse $ addHeader "X-Frame-Options" "GOFORIT"
+--  render "sample"
+  
+
 ------------------------------------------------------------------------------
 -- | The application's routes.
 routes :: [(ByteString, Handler App App ())]
+-- [ ("path" , with SNAPLET HANDLE), 
+--   ("path" , HANDLE )]
 routes = [ ("/login",    with auth handleLoginSubmit)
          , ("/logout",   with auth handleLogout)
          , ("/new_user", with auth handleNewUser)
+         --, ("/sample",   with heist handleTest)
          , ("",          serveDirectory "static")
          ]
 
