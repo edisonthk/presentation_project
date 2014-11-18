@@ -144,16 +144,16 @@
               </div>
               <!-- circle -->
               <div class="sidemenu sidemenu-circle">
-                <nobr>
+                <nobr>&nbsp;
                   <label>x:&nbsp;<input type="number" id="cir-x" min="-50" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
                   <label>y:&nbsp;<input type="number" id="cir-y" min="-50" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px</label>
                 </nobr>
                 <br /><br />
-                <nobr>
+                <nobr>&nbsp;
                   <label>z:&nbsp;<input type="number" name="number" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0"></label>
                 </nobr>
                 <br /><br />
-                <nobr>
+                <nobr>&nbsp;
                   <label>radius:&nbsp;<input type="number" id="cir-rad" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 </nobr>
               </div>
