@@ -67,6 +67,7 @@
                   <hr width="100%" size="1" color="#fff">You can type, so gooood!!</li></th>
               <th><img src="icon/theme_13.png" width="50px"></th>
               <th><img src="icon/theme_14.png" width="50px"></th>
+              <th><img src="icon/ic_object_frame.png" width="50px" onclick="appendHTML('object_frame')"></th>
             </tr>
           </table>
           </ul>

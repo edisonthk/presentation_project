@@ -43,9 +43,14 @@ function appendHTML(html){
     //   "animationDuration": "0.8s"
     // }];
     _data.push(triangle);
-  }
-  if(html=="circ"){
-    var circle = {
+  }else if(html=="circ"){
+    var circle = {};
+    circle["name"] = "object" + callCount;
+    circle["type"] = "object";
+    circle["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"40px"};
+    _data.push(circle);
+  }else if(html == "object_frame"){
+    _data.push({
           "name":"my_frame_object",
           "type":"object_frame",
           "characteristics": {"x":"200px","y":"200px"},
@@ -68,8 +73,7 @@ function appendHTML(html){
             "/img/explosion/explosion_16.png",
             "/img/explosion/explosion_17.png",
           ],
-        }
-    _data.push(circle);
+        });
   }
   /*
   var ani = {};
