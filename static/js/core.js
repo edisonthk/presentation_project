@@ -141,6 +141,10 @@ CompiledObject.prototype.initial = function(json_obj){
     t.default_style_obj["width"] = "560px";
     t.default_style_obj["height"] = "315px";
     t.src = json_obj["src"];
+  }else if(this.type === "object_image"){
+    t.src = json_obj["src"];
+    t.default_style_obj["width"] = "auto";
+    t.default_style_obj["height"] = "auto";
   }else{
     t.default_style_obj["width"] = t.default.width;
     t.default_style_obj["height"] = t.default.height;
@@ -581,7 +585,6 @@ ParsingEngine.prototype.compileElement = function(compiler_obj, ele){
   // write compiler_obj["name"] to element id
   ele.id = compiler_obj["name"];
 
-  console.log(compiler_obj);
   // write compiler_obj["compiled_css"] to element css
   for (var css in compiler_obj["compiled_css"]) {
     t.styling(ele,css,compiler_obj["compiled_css"][css]);
@@ -673,6 +676,19 @@ ParsingEngine.prototype.compileElement = function(compiler_obj, ele){
   }
 }
 
+// if current object_type belong to CopmiledObject, return true
+// else return false
+ParsingEngine.prototype.isObjectType = function(obj_type) {
+  var available_types = ["object","object_frame","object_youtube","object_image"];
+  for(var i = 0;i < available_types.length;i++){
+    if(available_types[i] === obj_type){
+      return true;
+    }
+  }
+  return false;
+}
+
+// if 
 ParsingEngine.prototype.compileSpecialObjectElement = function(compiler_obj,ele) {
   if(compiler_obj["type"] === "object_frame"){
     var key = this.generateUniqueString();
@@ -682,8 +698,10 @@ ParsingEngine.prototype.compileSpecialObjectElement = function(compiler_obj,ele)
     setInterval(function(){__f.intervalFunct();} , compiler_obj["frameDuration"]);
   }else if(compiler_obj["type"] === "object_youtube"){
     ele.src = this.convertYoutubeUrl(compiler_obj["src"]);
-    ele.frameborder = "0";
-    ele.allowfullscreen = "";
+    ele.setAttribute("frameborder","0");
+    ele.setAttribute("allowfullscreen","");
+  }else if(compiler_obj["type"] === "object_image"){
+    ele.src = compiler_obj["src"];
   }
 }
 
@@ -732,7 +750,7 @@ ParsingEngine.prototype.writeDocuments = function() {
     var ele = this.compiled_objects[i]["element"];
     
     if(this.compiled_objects[i]["element"] == null){
-      if(this.compiled_objects[i]["type"] == "object_frame"){
+      if(this.compiled_objects[i]["type"] == "object_frame" || this.compiled_objects[i]["type"] == "object_image"){
         ele = document.createElement('img');
       }else if(this.compiled_objects[i]["type"] == "object_youtube"){
         ele = document.createElement('iframe');
@@ -831,6 +849,12 @@ ParsingEngine.prototype.checkingGrammer = function(json_obj){
       // if there is no src attribute found in layer 1, error will be thrown 
       throw "Object[\"src\"] is missing in object \""+json_obj["name"]+"\"";
     }
+  }else if(json_obj["type"] === "object_image") {
+    if(typeof json_obj["src"] === "undefined"){
+      // obj["src"] is compulsory layer 1 for object_image
+      // if there is no src attribute found in layer 1, error will be thrown 
+      throw "Object[\"src\"] is missing in object \""+json_obj["name"]+"\"";
+    }
   }
 }
 
@@ -849,7 +873,7 @@ ParsingEngine.prototype.updateElement = function(data) {
       // there is no grammar mistake in json file
       this.checkingGrammer(json_obj);
 
-      if(json_obj["type"] === "object" || json_obj["type"] === "object_frame" || json_obj["type"] === "object_youtube"){
+      if(this.isObjectType(json_obj["type"])){
         // compile object
         var compiled_obj = new CompiledObject(json_obj);
         this.compiled_objects.push(compiled_obj);  

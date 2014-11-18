@@ -13,6 +13,11 @@
           "characteristics": {"full_screen":true,"text":"ffdffsdf","verticalAlign":"middle","fontColor":"black","textAlign":"middle","color":"transparent"}
         },
         {
+          "name":"pic1",
+          "type":"object_image",
+          "src":"http://upload.wikimedia.org/wikipedia/en/archive/d/d4/20130407130953!TOKYO-YUI.jpg",
+        },
+        {
           "name":"youtube1",
           "type":"object_youtube",
           "src":"http://youtu.be/63EdRHgbGm0",
