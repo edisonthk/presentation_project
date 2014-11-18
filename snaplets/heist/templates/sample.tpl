@@ -10,7 +10,7 @@
         {
           "name":"object1",
           "type":"object",
-          "characteristics": {"full_screen":true,"text":"ffdffsdf","verticalAlign":"middle","fontColor":"black","textAlign":"middle","color":"transparent"}
+          "characteristics": {"fullScreen":true,"text":"ffdffsdf","verticalAlign":"middle","fontColor":"black","textAlign":"middle","color":"transparent"}
         },
         {
           "name":"pic1",

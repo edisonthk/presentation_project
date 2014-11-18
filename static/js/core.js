@@ -219,6 +219,16 @@ CompiledObject.prototype.compileStyle = function(characteristics){
   if(t.hasAttr(characteristics,"opacity")){
     results["opacity"] = characteristics["opacity"];
   }
+  if(t.hasAttr(characteristics,"fullScreen")){
+    if(characteristics["fullScreen"] == "true" || characteristics["fullScreen"]){
+      var w  = window.innerWidth || document.documentElement.clientWidth,
+      h = window.innerHeight || document.documentElement.clientHeight;
+      results["left"] = "0px";
+      results["top"] = "0px";
+      results["width"] = w + "px";
+      results["height"] = h + "px";
+    }
+  }
   if(t.hasAttr(characteristics,"text")){
 
     results["text"] = characteristics["text"];
