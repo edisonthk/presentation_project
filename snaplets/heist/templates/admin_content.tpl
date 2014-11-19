@@ -26,10 +26,14 @@
 				$("#system-selector").draggable({
 					opacity: 0.5,
 					containment: "parent",
-					drag: function(e, ui) {
+					drag: function(ea, ui) {
+						e.target.style.opacity= "0.5";
 						if(typeof selectorDragCallback === "function"){
 							selectorDragCallback(_s,ui.position.top, ui.position.left);
 						}
+        			},
+        			stop: function(ea,ui) {
+        				e.target.style.opacity= "1.0";
         			}
         			//handle: "div"
 				});

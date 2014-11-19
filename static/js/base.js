@@ -32,25 +32,21 @@ var callCount = 0; //appendHTMLを呼び出された回数をカウントしま�
 
 function appendHTML(html){
   callCount += 1; //呼ばれる度に+1
-  if(html=="san"){
-    var triangle = {};
-    triangle["name"] = "object" + callCount;
-    triangle["type"] = "object";
-    triangle["characteristics"] = {"color":"green","shape":"triangle","x":"150px","y":"120px","height":"150px","width":"200px"};
-    // triangle["click"] = [{
-    //   "object":"object1",
-    //   "animation": "ani",
-    //   "animationDuration": "0.8s"
-    // }];
-    _data.push(triangle);
-  }
+  var objectData = {}; //引数が"object"の場合，objectDataに格納する。
+  objectData["name"] = "object" + callCount;
+  objectData["type"] = "object";
+  //htmlの内容によって，charasteristicsの内容を変える。
   if(html=="circ"){
-    var circle = {};
-    circle["name"] = "object" + callCount;
-    circle["type"] = "object";
-    circle["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"40px"};
-    _data.push(circle);
+    objectData["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"40px"};    
+  }else if(html=="san"){
+    objectData["characteristics"] = {"color":"green","shape":"triangle","x":"150px","y":"120px","height":"150px","width":"200px"};
   }
+  _data.push(objectData);
+//objectData["click"] = [{
+//   "object":"object1",
+//   "animation": "ani",
+//   "animationDuration": "0.8s"
+// }];
   /*
   var ani = {};
   ani["name"] = "ani";
