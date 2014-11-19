@@ -106,8 +106,7 @@ Menu.prototype.setAnimationMenu = function() {
 		list: []
 	}
 }
-
-MenuEvent.prototype.triXChangeEvent = function(event){
+MenuEvent.prototype.XChangeEvent = function(event){
 	MenuEvent.prototype.baseChangeEvent(event, function(MENU_KEY, _selected_object_name, new_value ,data) {
 		// _dataを更新
 		for(var i=0;i<data.length;i++){
@@ -117,7 +116,7 @@ MenuEvent.prototype.triXChangeEvent = function(event){
 		}
 	});
 }
-MenuEvent.prototype.triYChangeEvent = function(event){
+MenuEvent.prototype.YChangeEvent = function(event){
 	MenuEvent.prototype.baseChangeEvent(event, function(MENU_KEY, _selected_object_name, new_value ,data) {
 		// _dataを更新
 		for(var i=0;i<data.length;i++){
@@ -144,26 +143,6 @@ MenuEvent.prototype.triHChangeEvent = function(event){
 		for(var i=0;i<data.length;i++){
 			if(data[i].name == _selected_object_name){
 				data[i][MENU_KEY.CHARACTERISTICS]["height"] = new_value + "px";
-			}
-		}
-	});
-}
-MenuEvent.prototype.cirXChangeEvent = function(event){
-	MenuEvent.prototype.baseChangeEvent(event, function(MENU_KEY, _selected_object_name, new_value ,data) {
-		// _dataを更新
-		for(var i=0;i<data.length;i++){
-			if(data[i].name == _selected_object_name){
-				data[i][MENU_KEY.CHARACTERISTICS]["x"] = new_value + "px";
-			}
-		}
-	});
-}
-MenuEvent.prototype.cirYChangeEvent = function(event){
-	MenuEvent.prototype.baseChangeEvent(event, function(MENU_KEY, _selected_object_name, new_value ,data) {
-		// _dataを更新
-		for(var i=0;i<data.length;i++){
-			if(data[i].name == _selected_object_name){
-				data[i][MENU_KEY.CHARACTERISTICS]["y"] = new_value + "px";
 			}
 		}
 	});
@@ -220,11 +199,11 @@ Menu.prototype.buildHtml = function() {
 	    	if(t.shape === "triangle") {
 	    		var triX = document.getElementById("tri-x");
 		      	triX.value = t.propertyMenu.x.match(/\d/g).join("");
-		      	triX.addEventListener("change",MenuEvent.triXChangeEvent,false);
+		      	triX.addEventListener("change",MenuEvent.XChangeEvent,false);
 
 		      	var triY = document.getElementById("tri-y");
 		      	triY.value = t.propertyMenu.y.match(/\d/g).join("");
-		      	triY.addEventListener("change",MenuEvent.triYChangeEvent,false);
+		      	triY.addEventListener("change",MenuEvent.YChangeEvent,false);
 
 		      	var triW = document.getElementById("tri-w");
 		      	triW.value = t.propertyMenu.width.match(/\d/g).join("");
@@ -236,11 +215,11 @@ Menu.prototype.buildHtml = function() {
 		    }else if(t.shape === "circle") {
 	    		var cirX = document.getElementById("cir-x");
 		      	cirX.value = t.propertyMenu.x.match(/\d/g).join("");
-		      	cirX.addEventListener("change",MenuEvent.cirXChangeEvent,false);
+		      	cirX.addEventListener("change",MenuEvent.XChangeEvent,false);		      	
 
 		      	var cirY = document.getElementById("cir-y");
 		      	cirY.value = t.propertyMenu.y.match(/\d/g).join("");
-		      	cirY.addEventListener("change",MenuEvent.cirYChangeEvent,false);
+				cirY.addEventListener("change",MenuEvent.YChangeEvent,false);
 
 		      	var cirrad = document.getElementById("cir-rad");
 		      	cirrad.value = t.propertyMenu.radius.match(/\d/g).join("");

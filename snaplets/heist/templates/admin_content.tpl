@@ -5,7 +5,8 @@
 	<title>iFrame</title>
 	<script type="text/javascript" src="/js/core.js"></script>
 	<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+	<!--<script type="text/javascript" src="/js/jquery-ui.min.js"></script>-->
 	<script type="text/javascript" src="/js/selector.js"></script>
 	<script>
 	// コアスクリプト
@@ -29,7 +30,6 @@
 						if(typeof selectorDragCallback === "function"){
 							selectorDragCallback(_s,ui.position.top, ui.position.left);
 						}
-         	   			// console.log(' top: ' + ui.position.top + ' left: ' + ui.position.left);
         			}
         			//handle: "div"
 				});

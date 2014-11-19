@@ -33,7 +33,6 @@ Selector.prototype.moveToSelectedElement = function(targetElement) {
 	console.log(targetElement);
 	if(typeof targetElement === "string"){
 		targetElement = document.getElementById(targetElement);
-
 	}
 
 	var clickedElement = targetElement;
