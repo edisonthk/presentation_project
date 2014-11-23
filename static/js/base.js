@@ -37,9 +37,9 @@ function appendHTML(html){
   objectData["type"] = "object";
   //htmlの内容によって，charasteristicsの内容を変える。
   if(html=="circ"){
-    objectData["characteristics"] = {"color":"blue","shape":"circle","radius":"50px","x":"50px","y":"40px"};    
+    objectData["characteristics"] = {"color":"#363CFF","shape":"circle","radius":"50px","x":"50px","y":"40px"};    
   }else if(html=="san"){
-    objectData["characteristics"] = {"color":"green","shape":"triangle","x":"150px","y":"120px","height":"150px","width":"200px"};
+    objectData["characteristics"] = {"color":"#4FFF78","shape":"triangle","x":"150px","y":"120px","height":"150px","width":"200px"};
   }
   _data.push(objectData);
 //objectData["click"] = [{
@@ -87,7 +87,7 @@ function appendHTML(html){
     menu.hide();
   }
 
-  // divが選択された祭にこのコールバックイベントが発生する
+  // divが選択されたときにこのコールバックイベントが発生する
   // この関数の中にメニューの内容を変更イベントなどを作ってください。
   // １番目のパラメータselectorはSelectorクラスだから
   document.getElementById(iframeid).contentWindow.elementSelectedCallback = function(selector) {

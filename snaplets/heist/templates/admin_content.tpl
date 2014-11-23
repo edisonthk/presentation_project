@@ -27,15 +27,15 @@
 					opacity: 0.5,
 					containment: "parent",
 					drag: function(ea, ui) {
-						e.target.style.opacity= "0.5";
+						e.target.style.opacity= "0.5"; //ドラッグしているときは，不透明度が0.5
 						if(typeof selectorDragCallback === "function"){
 							selectorDragCallback(_s,ui.position.top, ui.position.left);
 						}
         			},
         			stop: function(ea,ui) {
-        				e.target.style.opacity= "1.0";
+        				e.target.style.opacity= "1.0"; //これをしないと，ずっと不透明度が0.5のままになる。
         			}
-        			//handle: "div"
+        			//handle: "div" //divを選択しているときは，ドラッグできるようにする。
 				});
 				$("#system-selector").resizable({
 					handles: "all"
