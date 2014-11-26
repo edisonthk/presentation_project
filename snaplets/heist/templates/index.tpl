@@ -174,7 +174,15 @@
                     <input style="width:100px;" id="mycolor" class="colorPicker evo-cp0" />
                     <span class="evo-colorind" style="background-color:#8db3e2"></span>
                   </div>-->
-                <input class="color {pickerFaceColor:'transparent',pickerFace:3,pickerBorder:0,pickerInsetColor:'black'}" style="width:100px">
+                <nobr><label><input class="color {pickerFaceColor:'transparent',pickerFace:3,pickerBorder:0,pickerInsetColor:'black',hash:true}" id="objColor" style="width:100px"></label></nobr>
+                <br /><br />
+                <nobr>&nbsp;
+                  <label>Opacity:&nbsp;<input type="number" id="objOpa" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                </nobr>
+                <br /><br />
+                <nobr>&nbsp;
+                  <label>Rotation:&nbsp;<input type="number" id="objRot" min="0" style="color:white;height:18px;width:60px;background-color:#222;border:none;" placeholder="0">px&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                </nobr>
               </div>
               <!-- circle -->
               <div class="sidemenu sidemenu-circle">

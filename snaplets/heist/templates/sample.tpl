@@ -20,8 +20,8 @@
         {
           "name":"youtube1",
           "type":"object_youtube",
-          "src":"http://youtu.be/63EdRHgbGm0",
-          "characteristics": {"x":"200px","y":"400px"}
+          "src":"http://youtu.be/3gtxrjexHTQ",
+          "characteristics": {"x":"0px","y":"0px"}
         },
         {
           "name":"my_frame_object",

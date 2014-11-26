@@ -5,7 +5,8 @@
 	<title>iFrame</title>
 	<script type="text/javascript" src="/js/core.js"></script>
 	<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+	<!--<script type="text/javascript" src="/js/jquery-ui.min.js"></script>-->
 	<script type="text/javascript" src="/js/selector.js"></script>
 	<script>
 	core = new ParsingEngine();
@@ -26,13 +27,16 @@
 				$("#system-selector").draggable({
 					opacity: 0.5,
 					containment: "parent",
-					drag: function(e, ui) {
+					drag: function(ea, ui) {
+						e.target.style.opacity= "0.5"; //ドラッグしているときは，不透明度が0.5
 						if(typeof selectorDragCallback === "function"){
 							selectorDragCallback(_s,ui.position.top, ui.position.left);
 						}
-         	   			// console.log(' top: ' + ui.position.top + ' left: ' + ui.position.left);
+        			},
+        			stop: function(ea,ui) {
+        				e.target.style.opacity= "1.0"; //これをしないと，ずっと不透明度が0.5のままになる。
         			}
-        			//handle: "div"
+        			//handle: "div" //divを選択しているときは，ドラッグできるようにする。
 				});
 				$("#system-selector").resizable({
 					handles: "all"

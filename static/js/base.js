@@ -31,7 +31,7 @@ function iframeDoc(id){
 var callCount = 0; //appendHTMLを呼び出された回数をカウントします。objectの区別のために導入。
 
 function appendHTML(html){
-  callCount += 1; //呼ばれる度に+1
+
   if(html=="san"){
     var triangle = {};
     triangle["name"] = "object" + callCount;
@@ -51,7 +51,7 @@ function appendHTML(html){
     _data.push(circle);
   }else if(html == "object_frame"){
     _data.push({
-          "name":"my_frame_object",
+          "name":"my_frame_object" + callCount,
           "type":"object_frame",
           "characteristics": {"x":"200px","y":"200px"},
           "frames": [
@@ -75,6 +75,13 @@ function appendHTML(html){
           ],
         });
   }
+  
+  callCount ++;
+//objectData["click"] = [{
+//   "object":"object1",
+//   "animation": "ani",
+//   "animationDuration": "0.8s"
+// }];
   /*
   var ani = {};
   ani["name"] = "ani";
@@ -115,7 +122,7 @@ function appendHTML(html){
     menu.hide();
   }
 
-  // divが選択された祭にこのコールバックイベントが発生する
+  // divが選択されたときにこのコールバックイベントが発生する
   // この関数の中にメニューの内容を変更イベントなどを作ってください。
   // １番目のパラメータselectorはSelectorクラスだから
   document.getElementById(iframeid).contentWindow.elementSelectedCallback = function(selector) {
